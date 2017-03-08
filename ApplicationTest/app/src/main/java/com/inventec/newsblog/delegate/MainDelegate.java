@@ -1,6 +1,7 @@
 package com.inventec.newsblog.delegate;
 
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,8 @@ import com.inventec.newsblog.utils.KJAnimations;
 public class MainDelegate extends AppDelegate {
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
+    FloatingActionButton mFab;
+    MainDrawerListener mainDrawerListener;
 
     @Override
     public int getRootLayoutId() {
@@ -48,18 +51,13 @@ public class MainDelegate extends AppDelegate {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         //初始化 MaterialMenuDrawable
-        final MaterialMenuDrawable materialMenu =
+        MaterialMenuDrawable materialMenu =
                 new MaterialMenuDrawable(activity, Color.WHITE, Stroke.THIN);
         mDrawerLayout = get(R.id.drawer_layout);
+        mFab = get(R.id.fab);
         // 根据侧滑菜单进度控制 MaterialMenuDrawable 旋转进度
-        mDrawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                materialMenu.setTransformationOffset(
-                        MaterialMenuDrawable.AnimationState.BURGER_ARROW, slideOffset);
-            }
-        });
+        mainDrawerListener = new MainDrawerListener(materialMenu);
+        mDrawerLayout.addDrawerListener(mainDrawerListener);
         // 将 MaterialMenuDrawable 设置为home图标
         mToolbar.setNavigationIcon(materialMenu);
         // 点击home图标,控制侧滑开关
@@ -69,6 +67,16 @@ public class MainDelegate extends AppDelegate {
                 changeMenuState();
             }
         });
+    }
+
+    /**
+     * 取消DrawerLayout事件的监听
+     * Removes the specified listener from the list of listeners that will be notified of drawer events.
+     */
+    public void removeDrawerListener(){
+        if(mainDrawerListener != null){
+            mDrawerLayout.removeDrawerListener(mainDrawerListener);
+        }
     }
 
     public boolean menuIsOpen() {
@@ -121,5 +129,34 @@ public class MainDelegate extends AppDelegate {
             }
         });
         view.startAnimation(a);
+    }
+
+    /**
+     * DrawerLayout事件的监听实现类
+     */
+    private class MainDrawerListener extends DrawerLayout.SimpleDrawerListener{
+        private MaterialMenuDrawable materialMenu;
+
+        public MainDrawerListener(MaterialMenuDrawable materialMenu) {
+            this.materialMenu = materialMenu;
+        }
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+            super.onDrawerSlide(drawerView, slideOffset);
+            materialMenu.setTransformationOffset(
+                    MaterialMenuDrawable.AnimationState.BURGER_ARROW, slideOffset);
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            super.onDrawerOpened(drawerView);
+            mFab.hide();
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+            super.onDrawerClosed(drawerView);
+            mFab.show();
+        }
     }
 }

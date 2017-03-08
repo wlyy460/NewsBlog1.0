@@ -1,0 +1,5 @@
+<root>
+  <item name='android.content.pm.PackageManager MATCH_UNINSTALLED_PACKAGES'>
+    <annotation name='java.lang.annotation.Deprecated' />
+  </item>
+</root>

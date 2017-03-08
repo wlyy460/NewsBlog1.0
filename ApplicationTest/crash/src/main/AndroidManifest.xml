@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inventec.frame.crash">
+
+    <application android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name="com.inventec.frame.crash.activity.DefaultErrorActivity"
+            android:process=":error_activity"
+            android:theme="@style/CustomActivityOnCrashTheme"/>
+    </application>
+
+</manifest>

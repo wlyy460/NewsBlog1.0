@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.inventec.newsblog.widget.ProgressLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/base_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/base_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primary_background_color"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/material_16dp"
+                android:paddingTop="@dimen/material_16dp"
+                android:scrollbars="none">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </com.inventec.newsblog.widget.ProgressLayout>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floating_action_menu"
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_icon="@mipmap/ic_star"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_openDirection="up"
+        fab:menu_colorNormal="@color/colorAccent"
+        fab:menu_colorPressed="@color/colorPressed"
+        fab:menu_colorRipple="@color/colorRipple"
+        android:elevation="@dimen/material_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_action_button1"
+            style="@style/MenuButtonsStyle"
+            fab:fab_label="清纯"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_heart" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_action_button2"
+            style="@style/MenuButtonsStyle"
+            fab:fab_label="气质"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_cup" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_action_button3"
+            style="@style/MenuButtonsStyle"
+            fab:fab_label="萌女"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_coffee" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_action_button4"
+            style="@style/MenuButtonsStyle"
+            fab:fab_label="校花"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_camera" />
+    </com.github.clans.fab.FloatingActionMenu>
+
+</FrameLayout>

@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">NewsBlog</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_about">关于</string>
+
+    <string name="share">分享</string>
+
+    <string name="menu_item_news">新闻·图片·天气</string>
+    <string name="menu_item_blog">技术博客</string>
+    <string name="menu_item_component_lib">Android控件库</string>
+    <string name="menu_item_xitu">稀土掘金</string>
+    <string name="menu_item_topic">推荐阅读</string>
+
+    <string name="load_again">点击屏幕  重新加载</string>
+    <string name="loading">加载中...</string>
+
+    <!--<string name="title1">博客</string>
+    <string name="title2">阅读</string>
+    <string name="news_title1">开源中国</string>
+    <string name="news_title2">稀土掘金</string>-->
+
+    <string name="blog_detail">博客详情</string>
+
+    <string name="double_click_exit">再次点击返回键退出</string>
+    <string name="kymjs_blog_name">开源实验室</string>
+    <string name="xitu_community_name">稀土掘金社区</string>
+
+    <string name="btn_try_again">重试</string>
+    <string name="weather_edit_hint">请输入城市名(如：北京)</string>
+    <string name="weather_btn">查询当前天气</string>
+
+    <string name="tab_news">最新新闻</string>
+    <string name="tab_pictures">美图大全</string>
+    <string name="tab_weather">天气预报</string>
+    <string name="copyright_statement">Copyright@wlyy460 All Rights Reserved</string>
+    <string name="url">https://github.com/wlyy460</string>
+    <string name="app_url">https://github.com/wlyy460/NewsBlog</string>
+
+    <string name="fab_scrolling_view_behavior" translatable="false">com.inventec.newsblog.behavior.FabScrollBehavior</string>
+    <string name="news_title">新闻标题</string>
+    <string name="news_desc">新闻简介</string>
+
+</resources>

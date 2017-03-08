@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#34b0e9</color><!--colorPrimary 对应ActionBar的颜色-->
+    <color name="colorPrimaryDark">#0484BF</color><!--colorPrimaryDark对应状态栏的颜色-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色-->
+    <color name="colorAccent">#00ccff</color>
+    <color name="colorPressed">#0fe8f7</color>
+    <color name="colorRipple">#80e3f2</color>
+
+    <color name="window_background">#EBEBEB</color>
+    <color name="main_gray">#9A9A9A</color>
+    <color name="main_black">#333333</color>
+
+    <color name="list_item_text_color">#9a9a9a</color>
+    <color name="default_image_bg">#ffcfcfcf</color>
+
+    <color name="list_item_background_normal">#ffffff</color>
+    <color name="list_item_background_pressed">#efefef</color>
+
+    <color name="tab_text_color">#ffcfcfcf</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="primary_background_color">#F0F0F0</color>
+    <color name="colorMinor">#60b7df</color>
+    
+    <color name="item_pressed_color">#cfd8dc</color>
+    <color name="transparent_white_color">#8cffffff</color>
+    <color name="red_color">#FC413D</color>
+
+    <color name="list_item_divider">#4f000000</color>
+</resources>

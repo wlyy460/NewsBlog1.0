@@ -16,6 +16,7 @@ import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.toolbox.Loger;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 下拉列表界面基类
@@ -26,7 +27,7 @@ public abstract class MainListFragment<T> extends MainFragment<PullListDelegate>
         IRequestVo, BaseRecyclerAdapter.OnItemClickListener {
     protected BasePullUpRecyclerAdapter<T> adapter;
     protected RecyclerView recyclerView;
-    protected ArrayList<T> datas = new ArrayList<>();
+    protected List<T> datas = new ArrayList<>();
 
     protected abstract BasePullUpRecyclerAdapter<T> getAdapter();
     protected abstract ArrayList<T> parserInAsync(byte[] t);

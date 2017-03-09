@@ -14,7 +14,6 @@ import com.inventec.newsblog.model.news.NewsBean;
 import com.inventec.newsblog.utils.GlideUtil;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * 新闻列表适配器
@@ -23,8 +22,6 @@ import java.util.List;
 public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean>{
     public static final int TYPE_ITEM = 0;//item内容
     public static final int TYPE_FOOTER = 1;//加载更多
-
-    private List<NewsBean> newsList;
 
     /**
      * 是否显示加载更多视图
@@ -53,9 +50,9 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean>{
         if (!showFooter) {
             return TYPE_ITEM;
         }
-        if (position + 1 == getItemCount()) {
+        if (position == getItemCount() - 1){
             return TYPE_FOOTER;
-        } else {
+        }else{
             return TYPE_ITEM;
         }
     }
@@ -63,9 +60,6 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean>{
     @Override
     public int getItemCount() {
         int begin = showFooter ? 1 : 0;
-        if (this.newsList == null || newsList.isEmpty()) {
-            return begin;
-        }
         return super.getItemCount() + begin;
     }
 
@@ -73,13 +67,14 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean>{
     public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
             return super.onCreateViewHolder(parent, viewType);
-        } else {
+        } else if (viewType == TYPE_FOOTER){
             View footerView = LayoutInflater.from(cxt).inflate(
                     R.layout.item_footer, parent, false);
             footerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             return new RecyclerHolder(footerView);
         }
+        return null;
     }
 
     @Override
@@ -90,6 +85,7 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean>{
                 this.showFooter = false;
             }
         } else {
+            this.showFooter = true;
             super.onBindViewHolder(holder, position);
         }
     }

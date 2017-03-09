@@ -9,12 +9,12 @@ public class NowWeather {
     private String aqi;//污染指数
     private String sd;//湿度
     private String temperature;//气温
-    private String tempTime;//气温时间
+    private String temperature_time;//气温时间
     private String weather;//天气“晴雨”
-    private String weatherCode;//天气编码
-    private String weatherPic;//天气图片
-    private String windDirection;//风向
-    private String windPower;//风力
+    private String weather_code;//天气编码
+    private String weather_pic;//天气图片
+    private String wind_direction;//风向
+    private String wind_power;//风力
 
     public String getAqi() {
         return aqi;
@@ -41,11 +41,11 @@ public class NowWeather {
     }
 
     public String getTempTime() {
-        return tempTime;
+        return temperature_time;
     }
 
     public void setTempTime(String tempTime) {
-        this.tempTime = tempTime;
+        this.temperature_time = tempTime;
     }
 
     public String getWeather() {
@@ -57,34 +57,34 @@ public class NowWeather {
     }
 
     public String getWeatherCode() {
-        return weatherCode;
+        return weather_code;
     }
 
     public void setWeatherCode(String weatherCode) {
-        this.weatherCode = weatherCode;
+        this.weather_code = weatherCode;
     }
 
     public String getWeatherPic() {
-        return weatherPic;
+        return weather_pic;
     }
 
     public void setWeatherPic(String weatherPic) {
-        this.weatherPic = weatherPic;
+        this.weather_pic = weatherPic;
     }
 
     public String getWindDirection() {
-        return windDirection;
+        return wind_direction;
     }
 
     public void setWindDirection(String windDirection) {
-        this.windDirection = windDirection;
+        this.wind_direction = windDirection;
     }
 
     public String getWindPower() {
-        return windPower;
+        return wind_power;
     }
 
     public void setWindPower(String windPower) {
-        this.windPower = windPower;
+        this.wind_power = windPower;
     }
 }

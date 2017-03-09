@@ -30,10 +30,10 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
     private int pageNum = 1;
     private NewsListAdapter newsAdapter;
     protected RecyclerView recyclerView;
-    private INewsData newsDataInterface;
+    private INewsData iNewsData;
 
     //新闻数据列表
-    private List<NewsBean> newsList = new ArrayList<>();
+    private List<NewsBean> newsData = new ArrayList<>();
 
     public static NewsFragment newInstance() {
         NewsFragment fragment = new NewsFragment();
@@ -48,14 +48,15 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        doLoadNewsList(true);
     }
 
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
         recyclerView = viewDelegate.get(R.id.base_recyclerview);
-        newsDataInterface = new NetLoadImpl();
-        newsAdapter = new NewsListAdapter(recyclerView, newsList, R.layout.item_news);
+        iNewsData = new NetLoadImpl();
+        newsAdapter = new NewsListAdapter(recyclerView, newsData, R.layout.item_news);
         viewDelegate.setListAdapter(newsAdapter);
         //注册下拉刷新
         viewDelegate.registerSwipeRefreshCallBack(this);
@@ -66,12 +67,12 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
 
     @Override
     public void refresh() {
-
+        doLoadNewsList(true);
     }
 
     @Override
     public void loadMore() {
-
+        doLoadNewsList(false);
     }
 
     @Override
@@ -84,15 +85,15 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
      * @param isRefresh 是否刷新
      */
     private void doLoadNewsList(final boolean isRefresh) {
-//        viewDelegate.showLoading();
         if(isRefresh){
             pageNum = 1;
         }else {
             pageNum++;
         }
-        newsDataInterface.doRequestNews(pageNum, INewsData.CHANNEL_ID, INewsData.CHANNEL_NAME, new OnNetRequestListener<List<NewsBean>>() {
+        iNewsData.doRequestNews(pageNum, INewsData.CHANNEL_ID, INewsData.CHANNEL_NAME, new OnNetRequestListener<List<NewsBean>>() {
             @Override
             public void onStart() {
+                //viewDelegate.showLoading();
             }
 
             @Override
@@ -101,14 +102,26 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
 
             @Override
             public void onSuccess(List<NewsBean> list) {
-                viewDelegate.showContent();
-                if(isRefresh) {
-                    if(!newsList.isEmpty()){
-                        newsList.clear();
+                if (list != null && !list.isEmpty()) {
+                    viewDelegate.showContent();
+                    /*if (isRefresh) {
+                        if (!newsData.isEmpty()) {
+                            newsData.clear();
+                        }
+                        newsData.addAll(list);
+                    } else {
+                        for (NewsBean data : list) {
+                            if (!newsData.contains(data)) newsData.add(data);
+                        }
+                    }*/
+                    if(isRefresh) {
+                        if(!newsData.isEmpty()){
+                            newsData.clear();
+                        }
                     }
+                    newsData.addAll(list);
+                    newsAdapter.notifyDataSetChanged();
                 }
-                newsList.addAll(list);
-                newsAdapter.notifyDataSetChanged();
             }
 
             @Override

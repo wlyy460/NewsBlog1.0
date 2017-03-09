@@ -12,7 +12,7 @@ public class PageBean<T> {
     private String allPages;//所有页数
     private String currentPage;//当前页
     private String maxResult;//每页最大条数
-    private List<T> contentList;//明细列表
+    private List<T> contentlist;//明细列表
 
     public String getAllNum() {
         return allNum;
@@ -47,10 +47,10 @@ public class PageBean<T> {
     }
 
     public List<T> getContentList() {
-        return contentList;
+        return contentlist;
     }
 
     public void setContentList(List<T> contentList) {
-        this.contentList = contentList;
+        this.contentlist = contentList;
     }
 }

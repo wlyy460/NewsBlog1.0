@@ -8,22 +8,22 @@ import com.inventec.newsblog.model.entity.PageBean;
  */
 
 public class ShowApiPictures {
-    private PageBean<PictureBean> pageBean;//分页数
-    private String resultCode;
+    private PageBean<PictureBean> pagebean;//分页数
+    private String ret_code;//0为返回成功
 
     public PageBean<PictureBean> getPageBean() {
-        return pageBean;
+        return pagebean;
     }
 
     public void setPageBean(PageBean<PictureBean> pageBean) {
-        this.pageBean = pageBean;
+        this.pagebean = pageBean;
     }
 
     public String getResultCode() {
-        return resultCode;
+        return ret_code;
     }
 
     public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
+        this.ret_code = resultCode;
     }
 }

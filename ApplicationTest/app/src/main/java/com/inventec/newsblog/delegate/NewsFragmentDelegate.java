@@ -5,9 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.inventec.frame.adapter.BaseRecyclerAdapter;
-import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.adapter.NewsListAdapter;
-import com.inventec.newsblog.inter.ILoadingView;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.widget.ListItemDecoration;
 
@@ -16,7 +14,7 @@ import com.inventec.newsblog.widget.ListItemDecoration;
  * Created by Test on 2017/2/28.
  */
 
-public class NewsFragmentDelegate extends BaseRecyclerViewDelegate implements ILoadingView {
+public class NewsFragmentDelegate extends BaseRecyclerViewDelegate {
     /**
      * 用于加载更多的列表布局管理器
      */
@@ -29,7 +27,7 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate implements IL
         recyclerView.addItemDecoration(new ListItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recycleViewLayoutManager = new LinearLayoutManager(BaseApplication.getContext());
+        recycleViewLayoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(recycleViewLayoutManager);
        /* fabMenu.hideMenu(false);
         new Handler().postDelayed(new Runnable() {
@@ -48,22 +46,21 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate implements IL
     }
 
     @Override
-    public void registerLoadMoreCallBack(final SwipeRefreshAndLoadMoreCallBack callBack, final BaseRecyclerAdapter adapter) {
-
+    public void registerLoadMoreCallBack(final SwipeRefreshAndLoadMoreCallBack callBack,
+                                         final BaseRecyclerAdapter adapter) {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int lastVisibleItem;
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                NewsListAdapter newsListAdapter = null;
-                if (adapter instanceof NewsListAdapter){
+                NewsListAdapter newsListAdapter = (NewsListAdapter) adapter;
+                /*if (adapter instanceof NewsListAdapter){
                     newsListAdapter = (NewsListAdapter) adapter;
                 }else {
                     return;
-                }
+                }*/
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
-                        lastVisibleItem + 1 == adapter.getItemCount()&&
+                        lastVisibleItem + 1 == newsListAdapter.getItemCount()&&
                         newsListAdapter.isShowFooter()) {
                     callBack.loadMore();
                 }

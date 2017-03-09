@@ -23,7 +23,7 @@ import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 /**
- * 网络数据请求接口的统一实现类（新闻，图片和天气）
+ * 网络请求接口的统一实现类（新闻，图片和天气）
  * Created by Administrator on 2017/3/7.
  */
 
@@ -31,26 +31,30 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
 
     @Override
     public void doRequestNews(int page, String channelId, String channelName,
-                              final OnNetRequestListener<List<NewsBean>> listListener) {
-        //此处采用Retrofit的官方响应方式，天气预报采用RxJava
+                              final OnNetRequestListener<List<NewsBean>> listener) {
+        //此处采用Retrofit的官方响应方式，天气预报和图片请求采用RxJava
         Call<ShowApiResponse<ShowApiNews>> call = RetrofitService.getInstance()
                 .createShowAPI()
                 .getNewsList(RetrofitService.getCacheControl(), BizInterface.SHOW_API_APPID,
                         BizInterface.SHOW_API_KEY, page, channelId, channelName);
+        listener.onStart();
         call.enqueue(new Callback<ShowApiResponse<ShowApiNews>>() {
+
             @Override
             public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
-                if (response.body() != null){
-                    Log.d("doRequestNews", "onResponse: "+ response.message() + response.code() + response.body().showapi_res_code
-                            + response.body().showapi_res_error);
-                    listListener.onSuccess(response.body().showapi_res_body.getPageBean().getContentList());
-                }else{
-                    listListener.onFailure(new Exception());
+                if (response.body() != null) {
+                    Log.d("doRequestNews", "message: " + response.message() + " code:" + response.code()
+                            + "\nshowapi_body: " + ((ShowApiNews)response.body().showapi_res_body).toString()
+                            + "\nshowapi_code:" + response.body().showapi_res_code
+                            + " showapi_error:" + response.body().showapi_res_error);
+                    listener.onSuccess(response.body().showapi_res_body.getPageBean().getContentList());
+                } else {
+                    listener.onFailure(new Exception());
                 }
             }
             @Override
             public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
-                listListener.onFailure(t);
+                listener.onFailure(t);
             }
         });
     }
@@ -73,15 +77,21 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
                     public void onCompleted() {
                         listener.onFinish();
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         listener.onFailure(e);
                         listener.onFinish();
                     }
+
                     @Override
-                    public void onNext(ShowApiResponse<ShowApiPictures> showApiPicturesShowApiResponse) {
-                        if (showApiPicturesShowApiResponse.showapi_res_body != null) {
-                            listener.onSuccess(showApiPicturesShowApiResponse.showapi_res_body.getPageBean().getContentList());
+                    public void onNext(ShowApiResponse<ShowApiPictures> response) {
+                        Log.d("doRequestPictures", "showapi_body: "
+                                + response.showapi_res_body.toString()
+                                + "\nshowapi_code:" + response.showapi_res_code
+                                + " showapi_error:" + response.showapi_res_error);
+                        if (response.showapi_res_body != null) {
+                            listener.onSuccess(response.showapi_res_body.getPageBean().getContentList());
                         } else {
                             listener.onFailure(new Exception());
                         }
@@ -111,17 +121,23 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
                         //仅成功后会回调
                         listener.onFinish();
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         listener.onFailure(e);
                         listener.onFinish();
                     }
+
                     @Override
-                    public void onNext(ShowApiResponse<WeatherBean> weatherBeanShowApiResponse) {
-                        if(weatherBeanShowApiResponse.showapi_res_body.getNowWeather() == null){
-                            listener.onFailure(new Exception(weatherBeanShowApiResponse.showapi_res_code));
-                        }else {
-                            listener.onSuccess(weatherBeanShowApiResponse.showapi_res_body);
+                    public void onNext(ShowApiResponse<WeatherBean> response) {
+                        Log.d("doRequestWeather", "showapi_body: "
+                                + response.showapi_res_body.toString()
+                                + "\nshowapi_code:" + response.showapi_res_code
+                                + " showapi_error:" + response.showapi_res_error);
+                        if (response.showapi_res_body.getNowWeather() == null) {
+                            listener.onFailure(new Exception(response.showapi_res_code));
+                        } else {
+                            listener.onSuccess(response.showapi_res_body);
                         }
                     }
                 });

@@ -113,13 +113,8 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        viewDelegate.removeDrawerListener();
-    }
-
-    @Override
     protected void onDestroy() {
+        viewDelegate.removeDrawerListener();
         super.onDestroy();
         if (rxBusSubscript != null && rxBusSubscript.isUnsubscribed()) {
             rxBusSubscript.unsubscribe();

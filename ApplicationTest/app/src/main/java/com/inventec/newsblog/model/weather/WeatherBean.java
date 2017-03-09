@@ -6,22 +6,22 @@ package com.inventec.newsblog.model.weather;
  */
 
 public class WeatherBean {
-    private NowWeather nowWeather;
-    private FutureWeather futureWeather;
+    private NowWeather now;
+    private FutureWeather f1;
 
     public NowWeather getNowWeather() {
-        return nowWeather;
+        return now;
     }
 
     public void setNowWeather(NowWeather nowWeather) {
-        this.nowWeather = nowWeather;
+        this.now = nowWeather;
     }
 
     public FutureWeather getFutureWeather() {
-        return futureWeather;
+        return f1;
     }
 
     public void setFutureWeather(FutureWeather futureWeather) {
-        this.futureWeather = futureWeather;
+        this.f1 = futureWeather;
     }
 }

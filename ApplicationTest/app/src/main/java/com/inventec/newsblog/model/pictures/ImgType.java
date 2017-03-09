@@ -6,31 +6,31 @@ package com.inventec.newsblog.model.pictures;
  */
 
 public class ImgType {
-    private String bigUrl;// 大图路径
-    private String middleUrl;// 中图路径
-    private String smallUrl;// 小图路径
+    private String big;// 大图路径
+    private String middle;// 中图路径
+    private String small;// 小图路径
 
     public String getBigUrl() {
-        return bigUrl;
+        return big;
     }
 
     public void setBigUrl(String bigUrl) {
-        this.bigUrl = bigUrl;
+        this.big = bigUrl;
     }
 
     public String getMiddleUrl() {
-        return middleUrl;
+        return middle;
     }
 
     public void setMiddleUrl(String middleUrl) {
-        this.middleUrl = middleUrl;
+        this.middle = middleUrl;
     }
 
     public String getSmallUrl() {
-        return smallUrl;
+        return small;
     }
 
     public void setSmallUrl(String smallUrl) {
-        this.smallUrl = smallUrl;
+        this.small = smallUrl;
     }
 }

@@ -8,22 +8,22 @@ import com.inventec.newsblog.model.entity.PageBean;
  */
 
 public class ShowApiNews {
-    private PageBean<NewsBean> pageBean;
-    private String resultCode;
+    private PageBean<NewsBean> pagebean;
+    private String ret_code;//0为返回成功
 
     public String getResultCode() {
-        return resultCode;
+        return ret_code;
     }
 
     public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
+        this.ret_code = resultCode;
     }
 
     public PageBean<NewsBean> getPageBean() {
-        return pageBean;
+        return pagebean;
     }
 
     public void setPageBean(PageBean<NewsBean> pageBean) {
-        this.pageBean = pageBean;
+        this.pagebean = pageBean;
     }
 }

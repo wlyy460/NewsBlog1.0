@@ -21,14 +21,15 @@ public class NetworkStateUtil {
      */
 
     public static boolean networkConnected(Context context){
-
         if (context != null){
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo info = manager.getActiveNetworkInfo();
-            if (info != null)
-                return info.isAvailable();
+            if (null != info && info.isConnected()) {
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
+                }
+            }
         }
-
         return false;
     }
     /**

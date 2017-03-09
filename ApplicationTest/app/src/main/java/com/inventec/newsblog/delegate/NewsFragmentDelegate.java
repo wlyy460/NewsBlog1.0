@@ -48,26 +48,23 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate implements IL
     }
 
     @Override
-    public void registerLoadMoreCallBack(SwipeRefreshAndLoadMoreCallBack callBack, BaseRecyclerAdapter adapter) {
+    public void registerLoadMoreCallBack(final SwipeRefreshAndLoadMoreCallBack callBack, final BaseRecyclerAdapter adapter) {
 
-    }
-
-    /**
-     * 设置加载更多接口回调
-     * @param callBack 加载更多的回调
-     * @param adapter
-     */
-    public void registerLoadMoreCallBack(final SwipeRefreshAndLoadMoreCallBack callBack,
-                                         final NewsListAdapter adapter) {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int lastVisibleItem;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                NewsListAdapter newsListAdapter = null;
+                if (adapter instanceof NewsListAdapter){
+                    newsListAdapter = (NewsListAdapter) adapter;
+                }else {
+                    return;
+                }
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
                         lastVisibleItem + 1 == adapter.getItemCount()&&
-                        adapter.isShowFooter()) {
+                        newsListAdapter.isShowFooter()) {
                     callBack.loadMore();
                 }
             }
@@ -87,4 +84,5 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate implements IL
 
         });
     }
+
 }

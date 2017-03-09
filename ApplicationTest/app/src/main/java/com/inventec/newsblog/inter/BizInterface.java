@@ -22,11 +22,11 @@ public interface BizInterface {
     /**
      * 易源api密钥
      */
-    String SHOW_API_KEY = "ae06b1ecff2847dba442b9433032f489";
+    String SHOW_API_KEY = "ae06b1ecff2847dba442b9433032f489";//5556e296fd184518a4b6dafb4d169372
     /**
      * 易源appid
      */
-    String SHOW_API_APPID = "31108";
+    String SHOW_API_APPID = "31108";//32530
 
     /**
      * 新闻接口

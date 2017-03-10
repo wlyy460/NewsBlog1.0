@@ -33,4 +33,10 @@ public class NewsImage {
     public void setWidth(String width) {
         this.width = width;
     }
+
+    @Override
+    public String toString() {
+        return "\n{ height:" + height + ",width:" + width
+                + ",url:" + url  + " }";
+    }
 }

@@ -29,5 +29,5 @@
     <color name="transparent_white_color">#8cffffff</color>
     <color name="red_color">#FC413D</color>
 
-    <color name="list_item_divider">#4f000000</color>
+    <color name="list_item_divider">#3c000000</color>
 </resources>

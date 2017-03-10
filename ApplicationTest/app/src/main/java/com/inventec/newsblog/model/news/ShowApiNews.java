@@ -26,4 +26,9 @@ public class ShowApiNews {
     public void setPageBean(PageBean<NewsBean> pageBean) {
         this.pagebean = pageBean;
     }
+
+    @Override
+    public String toString() {
+        return "{ pagebean:"+pagebean + ",ret_code:" + ret_code + " }";
+    }
 }

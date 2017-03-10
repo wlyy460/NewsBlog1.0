@@ -33,7 +33,8 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
     private INewsData iNewsData;
 
     //新闻数据列表
-    private List<NewsBean> newsData = new ArrayList<>();
+    private List<NewsBean> newsData = new ArrayList<NewsBean>();
+    private  boolean isFirstLoading = true;//是否首次加载
 
     public static NewsFragment newInstance() {
         NewsFragment fragment = new NewsFragment();
@@ -93,9 +94,12 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
         iNewsData.doRequestNews(pageNum, INewsData.CHANNEL_ID, INewsData.CHANNEL_NAME, new OnNetRequestListener<List<NewsBean>>() {
             @Override
             public void onStart() {
-                //viewDelegate.showLoading();
+                //首次加载数据时显示正在加载提示
+                if (isFirstLoading) {
+                    isFirstLoading = false;
+                    viewDelegate.showLoading();
+                }
             }
-
             @Override
             public void onFinish() {
             }
@@ -104,22 +108,20 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
             public void onSuccess(List<NewsBean> list) {
                 if (list != null && !list.isEmpty()) {
                     viewDelegate.showContent();
-                    /*if (isRefresh) {
-                        if (!newsData.isEmpty()) {
-                            newsData.clear();
-                        }
-                        newsData.addAll(list);
-                    } else {
-                        for (NewsBean data : list) {
-                            if (!newsData.contains(data)) newsData.add(data);
-                        }
-                    }*/
                     if(isRefresh) {
-                        if(!newsData.isEmpty()){
-                            newsData.clear();
+                        if (newsData != null && !newsData.isEmpty()){
+                            //去重
+                            for (NewsBean data:list) {
+                                if (!newsData.contains(data))
+                                    newsData.add(data);
+                            }
+                        }else{
+                            newsData.addAll(list);
                         }
+                       //newsAdapter.refresh(list);
+                    }else {
+                        newsData.addAll(list);
                     }
-                    newsData.addAll(list);
                     newsAdapter.notifyDataSetChanged();
                 }
             }

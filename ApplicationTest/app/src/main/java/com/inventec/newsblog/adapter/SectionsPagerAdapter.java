@@ -5,10 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.inventec.newsblog.R;
-import com.inventec.newsblog.fragment.NewsFragment;
-import com.inventec.newsblog.fragment.PicturesFragment;
-import com.inventec.newsblog.fragment.WeatherFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  viewpager选项卡适配器
@@ -17,6 +15,8 @@ import com.inventec.newsblog.fragment.WeatherFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private Context context;
+    private List<Fragment> fragments = new ArrayList<Fragment>();
+    private List<String> titles = new ArrayList<String>();
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -26,18 +26,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         this.context = context;
     }
 
+    public void addTab(Fragment fragment, String title) {
+        fragments.add(fragment);
+        titles.add(title);
+    }
+
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return NewsFragment.newInstance();
-            case 1:
-                return PicturesFragment.newInstance();
-            case 2:
-                return WeatherFragment.newInstance();
-            default:
-                return NewsFragment.newInstance();
-        }
+        return fragments.get(position);
     }
 
     @Override
@@ -47,14 +43,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return context.getResources().getString(R.string.tab_news);
-            case 1:
-                return context.getResources().getString(R.string.tab_pictures);
-            case 2:
-                return context.getResources().getString(R.string.tab_weather);
-        }
-        return  null;
+        return  titles.get(position);
     }
 }

@@ -5,15 +5,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/recycler_item_bg"
     android:orientation="horizontal"
-    android:padding="@dimen/material_4dp">
+    android:padding="@dimen/material_6dp">
 
     <ImageView
         android:id="@+id/iv_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_error"/>
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"

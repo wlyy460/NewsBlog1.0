@@ -16,7 +16,7 @@ public class NewsBean {
     private String link;// 新闻详情链接
     private String content;// 新闻正文,txt格式
     private String html;//新闻正文,html格式
-    private String nid;// 1新闻对应的外网id
+    private String nid;// 新闻对应的外网id
     private String pubDate;// 发布时间，2016-01-28 11:47:17
     private String source;// 来源网站
     private String title;// 新闻标题
@@ -108,5 +108,28 @@ public class NewsBean {
 
     public void setHtml(String html) {
         this.html = html;
+    }
+
+    @Override
+    public String toString() {
+        return "\n{ channelId:" + channelId + ",channelName:" + channelName
+                + ",desc:" + desc + ",\nimageurls:" + imageurls + ",link:" + link
+                + ",content:" + content + ",html:" + html + ",nid:" + nid
+                + ",pubDate:" + pubDate + ",source:" + source + ",title:" + title + " }";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        NewsBean data = null;
+        if (obj instanceof  NewsBean){
+            data = (NewsBean) obj;
+            //通过新闻标题比较两个对象是否相等
+            if(data.title.equals(this.title)){
+                return true;
+            }
+        }else {
+            return false;
+        }
+        return false;
     }
 }

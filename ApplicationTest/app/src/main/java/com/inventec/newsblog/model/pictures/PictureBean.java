@@ -8,19 +8,19 @@ import java.util.List;
  */
 
 public class PictureBean {
-    private String time;// 2016-03-10 04;//12;//06.606,
+    private String ct;// 2016-03-10 04;12;6.606,创建时间
     private String itemId;// 相册id
-    private String title;// 相册名称
-    private String type;// 类型id
-    private String typeName;// 类型名称
+    private String title;// 相册标题
+    private String type;// 相册类型
+    private String typeName;// 相册类型名称
     public List<ImgType> list;//图片数组
 
     public String getTime() {
-        return time;
+        return ct;
     }
 
     public void setTime(String time) {
-        this.time = time;
+        this.ct = time;
     }
 
     public String getItemId() {
@@ -53,5 +53,12 @@ public class PictureBean {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "\n{ ct:" + ct + ",itemId:" + itemId
+                + ",title:" + title + ",type:" + type + ",typeName:" + typeName
+                + ",list:" + list  + " }";
     }
 }

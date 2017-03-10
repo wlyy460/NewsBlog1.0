@@ -26,4 +26,9 @@ public class ShowApiPictures {
     public void setResultCode(String resultCode) {
         this.ret_code = resultCode;
     }
+
+    @Override
+    public String toString() {
+        return "\n{ pagebean:" + pagebean + ",ret_code:" + ret_code + " }";
+    }
 }

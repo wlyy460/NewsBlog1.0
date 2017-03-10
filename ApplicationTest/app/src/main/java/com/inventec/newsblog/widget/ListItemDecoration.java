@@ -59,11 +59,10 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration {
     private void drawVertical(Canvas c, RecyclerView parent) {
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
-
         int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < childCount-1; i++) {
             View child = parent.getChildAt(i);
-            android.support.v7.widget.RecyclerView v = new android.support.v7.widget.RecyclerView(parent.getContext());
+            RecyclerView v = new RecyclerView(parent.getContext());
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             int top = child.getBottom() + params.bottomMargin;

@@ -12,7 +12,7 @@ public class NowWeather {
     private String temperature_time;//气温时间
     private String weather;//天气“晴雨”
     private String weather_code;//天气编码
-    private String weather_pic;//天气图片
+    private String weather_pic;//天气图片地址
     private String wind_direction;//风向
     private String wind_power;//风力
 
@@ -86,5 +86,13 @@ public class NowWeather {
 
     public void setWindPower(String windPower) {
         this.wind_power = windPower;
+    }
+
+    @Override
+    public String toString() {
+        return "\n{ aqi:" + aqi + ",sd:" + sd + ",temperature:" + temperature
+                + ",temperature_time:" + temperature_time + ",weather:" + weather
+                + ",weather_code:" + weather_code + ",weather_pic:" + weather_pic
+                + ",wind_direction:" + wind_direction + ",wind_power" + wind_power + " }";
     }
 }

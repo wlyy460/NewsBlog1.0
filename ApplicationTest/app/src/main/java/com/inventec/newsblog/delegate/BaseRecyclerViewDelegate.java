@@ -138,7 +138,7 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements IL
 
     @Override
     public void showLoading() {
-        swipeRefreshLayout.setRefreshing(true);
+        //swipeRefreshLayout.setRefreshing(true);
         if (!progressLayout.isLoading()){
             progressLayout.showLoading();
         }

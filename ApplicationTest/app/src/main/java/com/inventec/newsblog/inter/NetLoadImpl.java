@@ -44,7 +44,7 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
             public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
                 if (response.body() != null) {
                     Log.d("doRequestNews", "message: " + response.message() + " code:" + response.code()
-                            + "\nshowapi_body: " + ((ShowApiNews)response.body().showapi_res_body).toString()
+                            + "\nshowapi_body: " + response.body().showapi_res_body.toString()
                             + "\nshowapi_code:" + response.body().showapi_res_code
                             + " showapi_error:" + response.body().showapi_res_error);
                     listener.onSuccess(response.body().showapi_res_body.getPageBean().getContentList());
@@ -54,6 +54,7 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
             }
             @Override
             public void onFailure(Call<ShowApiResponse<ShowApiNews>> call, Throwable t) {
+                call.request();
                 listener.onFailure(t);
             }
         });
@@ -87,7 +88,7 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
                     @Override
                     public void onNext(ShowApiResponse<ShowApiPictures> response) {
                         Log.d("doRequestPictures", "showapi_body: "
-                                + response.showapi_res_body.toString()
+                                + response.showapi_res_body
                                 + "\nshowapi_code:" + response.showapi_res_code
                                 + " showapi_error:" + response.showapi_res_error);
                         if (response.showapi_res_body != null) {

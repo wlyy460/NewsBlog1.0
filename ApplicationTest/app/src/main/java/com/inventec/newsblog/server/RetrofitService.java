@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.inter.BizInterface;
-import com.inventec.newsblog.utils.NetworkStateUtil;
+import com.inventec.newsblog.utils.NetworkUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,12 +107,12 @@ public class RetrofitService {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     Request request = chain.request();
-                    if (!NetworkStateUtil.networkConnected(BaseApplication.getContext())) {
+                    if (!NetworkUtil.networkConnected(BaseApplication.getContext())) {
                         request = request.newBuilder()
                                 .cacheControl(CacheControl.FORCE_CACHE).build();
                     }
                     Response originalResponse = chain.proceed(request);
-                    if (NetworkStateUtil.networkConnected(BaseApplication.getContext())) {
+                    if (NetworkUtil.networkConnected(BaseApplication.getContext())) {
                         //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                         String cacheControl = request.cacheControl().toString();
                         return originalResponse.newBuilder()
@@ -140,6 +140,6 @@ public class RetrofitService {
      */
     @NonNull
     public static String getCacheControl() {
-        return NetworkStateUtil.networkConnected(BaseApplication.getContext()) ? CACHE_CONTROL_NETWORK : CACHE_CONTROL_CACHE;
+        return NetworkUtil.networkConnected(BaseApplication.getContext()) ? CACHE_CONTROL_NETWORK : CACHE_CONTROL_CACHE;
     }
 }

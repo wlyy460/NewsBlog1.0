@@ -33,4 +33,10 @@ public class ImgType {
     public void setSmallUrl(String smallUrl) {
         this.small = smallUrl;
     }
+
+    @Override
+    public String toString() {
+        return "\n{ big:" + big + ",middle:" + middle
+                + ",small:" + small  + " }";
+    }
 }

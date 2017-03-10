@@ -1,5 +1,7 @@
 package com.inventec.newsblog.utils;
 
+import android.os.Environment;
+
 import java.io.File;
 
 /**
@@ -19,5 +21,20 @@ public final class FileUtil {
             }
         }
         return size;
+    }
+
+    /**
+     * 获取文件夹对象
+     *
+     * @return 返回SD卡下的指定文件夹对象，若文件夹不存在则创建
+     */
+    public static File getCacheDir(String folderName) {
+        File file = new File( folderName);
+        file.mkdirs();
+        return file;
+    }
+
+    public static String getSDCardPath() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 }

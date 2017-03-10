@@ -13,8 +13,8 @@ import com.inventec.newsblog.R;
  */
 
 public class MainTabDelegate extends AppDelegate {
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    protected ViewPager viewPager;
+    protected TabLayout tabLayout;
 
     @Override
     public int getRootLayoutId() {

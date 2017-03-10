@@ -24,4 +24,10 @@ public class FutureWeather {
     public String night_weather_pic;
     public String night_wind_direction;
     public String night_wind_power;
+
+    @Override
+    public String toString() {
+        return "\n{ day:" + day + ",air_press:" + air_press + ",sun_begin_end:" + sun_begin_end
+                + ",weekday:" + weekday + " }";
+    }
 }

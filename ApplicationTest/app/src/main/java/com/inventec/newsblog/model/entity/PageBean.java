@@ -53,4 +53,11 @@ public class PageBean<T> {
     public void setContentList(List<T> contentList) {
         this.contentlist = contentList;
     }
+
+    @Override
+    public String toString() {
+        return "\n{ allNum:" + allNum + ",allPages:" + allPages
+                + ",currentPage:" + currentPage + ",maxResult:" + maxResult +
+                ",\ncontentlist:" + contentlist +" }";
+    }
 }

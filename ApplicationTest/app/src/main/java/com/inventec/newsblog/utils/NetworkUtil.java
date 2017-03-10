@@ -12,7 +12,7 @@ import android.net.NetworkInfo;
  * Created by Test on 2017/3/3.
  */
 
-public class NetworkStateUtil {
+public class NetworkUtil {
 
     /**
      * 检查是否连接到网络 whether connect to internet

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
@@ -18,18 +19,16 @@ import com.inventec.frame.base.MainFragment;
 import com.inventec.newsblog.R;
 import com.inventec.newsblog.delegate.MainDelegate;
 import com.inventec.newsblog.fragment.BlogListFragment;
+import com.inventec.newsblog.fragment.MainSlidMenu;
 import com.inventec.newsblog.fragment.MainTabFragment;
 import com.inventec.newsblog.fragment.XituListFragment;
 import com.inventec.newsblog.model.Event;
 import com.inventec.newsblog.utils.Api;
 import com.inventec.newsblog.utils.ToastUtil;
-import com.kymjs.rxvolley.rx.RxBus;
 
 import rx.Subscription;
-import rx.functions.Action1;
 
-public class MainActivity extends BaseFrameActivity<MainDelegate>
-        /*implements NavigationView.OnNavigationItemSelectedListener*/ {
+public class MainActivity extends BaseFrameActivity<MainDelegate> implements MainSlidMenu.onDrawerMenuItemClickListener{
     public static final String MENU_CLICK_EVEN = "slid_menu_click_event";
 
     private MainFragment currentFragment; //当前内容所显示的Fragment
@@ -55,8 +54,7 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
         /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -75,7 +73,7 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
-        rxBusSubscript = RxBus.getDefault().take(Event.class)
+       /* rxBusSubscript = RxBus.getDefault().take(Event.class)
                 .subscribe(new Action1<Event>() {
                     @Override
                     public void call(Event event) {
@@ -85,14 +83,20 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
                     @Override
                     public void call(Throwable throwable) {
                     }
-                });
-       viewDelegate.setOnClickListener(new View.OnClickListener() {
+                });*/
+
+        MainSlidMenu mainSlidMenu = (MainSlidMenu) getSupportFragmentManager().findFragmentById(R.id.main_menu);
+        mainSlidMenu.setOnDrawerMenuItemClickListener(this);
+        FloatingActionButton fab = viewDelegate.get(R.id.fab_main);
+        fab.setVisibility(View.GONE);
+        viewDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFabDialog();
             }
-        }, R.id.fab);
+        }, R.id.fab_main);
     }
+
     /**
      * 弹出点赞对话框
      */
@@ -149,7 +153,7 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
     }
 
     /**
-     * 用Fragment替换内容区
+     * 使用Fragment替换内容区
      * @param targetFragment 用来替换的Fragment
      * @param title          要替换掉的activity标题
      */
@@ -194,16 +198,6 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
         }
     }
 
-    /*@Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -214,13 +208,37 @@ public class MainActivity extends BaseFrameActivity<MainDelegate>
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            ToastUtil toastUtil = new ToastUtil();
-            toastUtil.Short(this, "暂未实现").show();
-            return true;
+        switch (id){
+            case R.id.action_about:
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.Short(this, "暂未实现").show();
+                return true;
+            case R.id.action_setting:
+
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDrawerMenuItemClick(int id) {
+        switch (id) {
+            case R.id.menu_item_tag1:
+                changeFragment(mainTabFragment, getResources().getString(R.string.menu_item_news));
+                break;
+            case R.id.menu_item_tag2:
+                changeFragment(blogListFragment, getResources().getString(R.string.menu_item_blog));
+                break;
+            case R.id.menu_item_tag3:
+                changeFragment(xituListFragment, getResources().getString(R.string.menu_item_xitu));
+                break;
+            case R.id.menu_item_tag4:
+                BlogDetailActivity.goinActivity(this, Api.OSL, null);
+                break;
+            default:
+                break;
+        }
+        viewDelegate.changeMenuState();
     }
 
     /*@Override

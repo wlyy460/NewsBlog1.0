@@ -45,7 +45,7 @@ public class WeatherBean {
 
     @Override
     public String toString() {
-        return "\n{ now:" + now + ",f1:" + f1 + ",ret_code:" + ret_code
+        return "{ now:" + now + ",f1:" + f1 + ",ret_code:" + ret_code
                 + ",time:" + time + " }";
     }
 }

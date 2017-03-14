@@ -36,7 +36,7 @@ public class ImgType {
 
     @Override
     public String toString() {
-        return "\n{ big:" + big + ",middle:" + middle
-                + ",small:" + small  + " }";
+        return "{ big:" + big + ",\nmiddle:" + middle
+                + ",\nsmall:" + small  + " }\n";
     }
 }

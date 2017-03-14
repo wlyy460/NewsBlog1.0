@@ -54,7 +54,7 @@ public class MainDelegate extends AppDelegate {
         MaterialMenuDrawable materialMenu =
                 new MaterialMenuDrawable(activity, Color.WHITE, Stroke.THIN);
         mDrawerLayout = get(R.id.drawer_layout);
-        mFab = get(R.id.fab);
+        mFab = get(R.id.fab_main);
         // 根据侧滑菜单进度控制 MaterialMenuDrawable 旋转进度
         mainDrawerListener = new MainDrawerListener(materialMenu);
         mDrawerLayout.addDrawerListener(mainDrawerListener);

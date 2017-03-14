@@ -105,7 +105,7 @@ public class BlogListFragment extends MainListFragment<Blog> {
     @Override
     public void doRequest() {
         new RxVolley.Builder().url(Api.BLOG_LIST)
-                .contentType(RxVolley.Method.GET)
+                .httpMethod(RxVolley.Method.GET)
                 .cacheTime(600)
                 .callback(callBack)
                 .doTask();

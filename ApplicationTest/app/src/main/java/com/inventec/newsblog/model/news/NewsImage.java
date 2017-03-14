@@ -36,7 +36,7 @@ public class NewsImage {
 
     @Override
     public String toString() {
-        return "\n{ height:" + height + ",width:" + width
-                + ",url:" + url  + " }";
+        return "{ height:" + height + ",width:" + width
+                + ",url:" + url  + " }\n";
     }
 }

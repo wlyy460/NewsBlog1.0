@@ -13,7 +13,7 @@ public class PictureBean {
     private String title;// 相册标题
     private String type;// 相册类型
     private String typeName;// 相册类型名称
-    public List<ImgType> list;//图片数组
+    private List<ImgType> list;//图片数组
 
     public String getTime() {
         return ct;
@@ -55,10 +55,24 @@ public class PictureBean {
         this.typeName = typeName;
     }
 
+    public List<ImgType> getList() {
+        return list;
+    }
+
+    public void setList(List<ImgType> list) {
+        this.list = list;
+    }
+
     @Override
     public String toString() {
-        return "\n{ ct:" + ct + ",itemId:" + itemId
-                + ",title:" + title + ",type:" + type + ",typeName:" + typeName
-                + ",list:" + list  + " }";
+        StringBuilder sb = new StringBuilder();
+        sb.append("{ ct:").append(ct)
+                .append(",itemId:" ).append(itemId)
+                .append(",title:").append(title)
+                .append(",type:").append(type)
+                .append(",typeName:").append(typeName)
+                .append(",\nlist:").append(list).append("}\n");
+
+        return sb.toString();
     }
 }

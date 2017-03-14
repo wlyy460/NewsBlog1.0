@@ -69,4 +69,9 @@
         <item name="fab_colorRipple">@color/colorRipple</item>
     </style>
 
+    <style name="NewsItemTextStyle">
+        <item name="android:textColor">@color/list_item_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

@@ -42,23 +42,6 @@ public class MainTabFragment extends MainFragment<MainTabDelegate> {
         viewDelegate.setViewPagerAdapter(sectionsPagerAdapter);
         viewDelegate.setupWithViewPager();
         ViewPager viewPager = viewDelegate.get(R.id.container_viewpager);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 1){
-
-                }else{
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
     }
 
     @Override

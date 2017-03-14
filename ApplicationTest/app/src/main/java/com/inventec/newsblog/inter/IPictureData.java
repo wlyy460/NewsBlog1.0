@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface IPictureData {
-    public String DEFAULT_TYPE = "4001";//类别
+    public String DEFAULT_TYPE = "4004";//类别
 
     /**
      * 请求加载图片数据

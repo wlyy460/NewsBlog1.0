@@ -29,6 +29,6 @@ public class ShowApiPictures {
 
     @Override
     public String toString() {
-        return "\n{ pagebean:" + pagebean + ",ret_code:" + ret_code + " }";
+        return "{ pagebean:" + pagebean + ",ret_code:" + ret_code + " }";
     }
 }

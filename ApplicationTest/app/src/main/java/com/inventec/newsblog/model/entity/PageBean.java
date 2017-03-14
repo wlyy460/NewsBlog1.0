@@ -56,8 +56,13 @@ public class PageBean<T> {
 
     @Override
     public String toString() {
-        return "\n{ allNum:" + allNum + ",allPages:" + allPages
-                + ",currentPage:" + currentPage + ",maxResult:" + maxResult +
-                ",\ncontentlist:" + contentlist +" }";
+        StringBuilder sb = new StringBuilder();
+        sb.append("{allNum:").append(allNum)
+                .append(",allPages:").append(allPages)
+                .append(",currentPage:").append(currentPage)
+                .append(",maxResult:").append(maxResult)
+                .append(",\ncontentlist:").append(contentlist +"}");
+
+        return sb.toString();
     }
 }

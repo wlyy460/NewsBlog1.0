@@ -15,6 +15,8 @@ import com.inventec.newsblog.inter.NetLoadImpl;
 import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.news.NewsBean;
+import com.inventec.newsblog.utils.Loger;
+import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.List;
 public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implements SwipeRefreshAndLoadMoreCallBack,
         BaseRecyclerAdapter.OnItemClickListener {
 
+    private static final String TAG = NewsFragment.class.getSimpleName();
     private int pageNum = 1;
     private NewsListAdapter newsAdapter;
     protected RecyclerView recyclerView;
@@ -59,11 +62,23 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
         iNewsData = new NetLoadImpl();
         newsAdapter = new NewsListAdapter(recyclerView, newsData, R.layout.item_news);
         viewDelegate.setListAdapter(newsAdapter);
+        bindEven();
         //注册下拉刷新
         viewDelegate.registerSwipeRefreshCallBack(this);
         //注册加载更多
         viewDelegate.registerLoadMoreCallBack(this, newsAdapter);
         newsAdapter.setOnItemClickListener(this);
+    }
+
+    private void bindEven() {
+        ProgressLayout progressLayout =  viewDelegate.get(R.id.progress_layout);
+        progressLayout.setOnButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLoadNewsList(true);
+                viewDelegate.showLoading();
+            }
+        });
     }
 
     @Override
@@ -102,38 +117,44 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
             }
             @Override
             public void onFinish() {
+                if (viewDelegate != null) {
+                    viewDelegate.showContent();
+                }
             }
-
             @Override
             public void onSuccess(List<NewsBean> list) {
                 if (list != null && !list.isEmpty()) {
-                    viewDelegate.showContent();
-                    if(isRefresh) {
-                        if (newsData != null && !newsData.isEmpty()){
+                    if (isRefresh) {
+                        if (newsData != null && !newsData.isEmpty()) {
                             //去重
-                            for (NewsBean data:list) {
+                            for (NewsBean data : list) {
                                 if (!newsData.contains(data))
                                     newsData.add(data);
                             }
-                        }else{
+                        }else {
                             newsData.addAll(list);
                         }
-                       //newsAdapter.refresh(list);
-                    }else {
+                    } else {
                         newsData.addAll(list);
                     }
                     newsAdapter.notifyDataSetChanged();
+                }else if (newsData == null || newsData.isEmpty()
+                        || newsAdapter == null || newsAdapter.getItemCount() < 1) {
+                    viewDelegate.showError(R.string.load_error);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                viewDelegate.showError(R.string.load_error, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        doLoadNewsList(true);
+                Loger.debug(TAG ,"====网络请求异常," +  t.getMessage());
+                if (viewDelegate != null && newsAdapter != null) {
+                    //有可能界面已经关闭网络请求仍然返回
+                    if (newsAdapter.getItemCount() > 1) {
+                        viewDelegate.showContent();
+                    } else {
+                        viewDelegate.showError(R.string.load_error);
                     }
-                });
+                }
             }
         });
     }

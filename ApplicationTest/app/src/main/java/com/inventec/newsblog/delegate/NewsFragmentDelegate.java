@@ -19,7 +19,6 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate {
      * 用于加载更多的列表布局管理器
      */
     private LinearLayoutManager recycleViewLayoutManager;
-    private int previousVisibleItem;
 
     @Override
     void initRecyclerView() {
@@ -29,15 +28,6 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate {
         recyclerView.setHasFixedSize(true);
         recycleViewLayoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(recycleViewLayoutManager);
-       /* fabMenu.hideMenu(false);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fabMenu.show(true);
-                fabMenu.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-                fabMenu.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
-            }
-        }, 300);*/
     }
 
     @Override
@@ -54,11 +44,6 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 NewsListAdapter newsListAdapter = (NewsListAdapter) adapter;
-                /*if (adapter instanceof NewsListAdapter){
-                    newsListAdapter = (NewsListAdapter) adapter;
-                }else {
-                    return;
-                }*/
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
                         lastVisibleItem + 1 == newsListAdapter.getItemCount()&&
                         newsListAdapter.isShowFooter()) {
@@ -69,13 +54,6 @@ public class NewsFragmentDelegate extends BaseRecyclerViewDelegate {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                /*int firstVisibleItem = recycleViewLayoutManager.findFirstVisibleItemPosition();
-                if (firstVisibleItem > previousVisibleItem) {
-                    fabMenu.hideMenu(true);
-                } else if (firstVisibleItem < previousVisibleItem) {
-                    fabMenu.showMenu(true);
-                }
-                previousVisibleItem = firstVisibleItem;*/
                 lastVisibleItem = recycleViewLayoutManager.findLastVisibleItemPosition();
             }
 

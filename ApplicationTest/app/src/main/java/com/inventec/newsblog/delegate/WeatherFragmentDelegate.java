@@ -68,7 +68,7 @@ public class WeatherFragmentDelegate extends AppDelegate implements ILoadingView
     }
 
     @Override
-    public void showError(int messageId, View.OnClickListener listener) {
+    public void showError(int messageId) {
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.inventec.newsblog.model.XituBlogList;
 import com.inventec.newsblog.utils.Api;
 import com.inventec.newsblog.utils.XmlUtil;
 import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpParams;
 
 import java.util.ArrayList;
 
@@ -90,7 +91,7 @@ public class XituListFragment extends MainListFragment<XituBlog> {
     @Override
     public void doRequest() {
         new RxVolley.Builder().url(Api.XITU_BLOG_LIST)
-                .contentType(RxVolley.Method.GET)
+                .httpMethod(RxVolley.Method.GET)
                 .cacheTime(10)
                 .callback(callBack)
                 .doTask();

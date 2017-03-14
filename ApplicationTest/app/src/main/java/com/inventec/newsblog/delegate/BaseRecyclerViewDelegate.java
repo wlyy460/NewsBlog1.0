@@ -86,7 +86,7 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements IL
     private void initFloatingActionMenu() {
         fabMenu.setVisibility(setFloatingActionMenuVisible()? View.VISIBLE:View.GONE);
         fabMenu.setClosedOnTouchOutside(true);
-        floatingActionButtons = new ArrayList<FloatingActionButton>();
+        floatingActionButtons = new ArrayList<>();
         floatingActionButtons.add(fab1);
         floatingActionButtons.add(fab2);
         floatingActionButtons.add(fab3);
@@ -138,7 +138,7 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements IL
 
     @Override
     public void showLoading() {
-        //swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setRefreshing(true);
         if (!progressLayout.isLoading()){
             progressLayout.showLoading();
         }
@@ -154,11 +154,11 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements IL
     }
 
     @Override
-    public void showError(int messageId, View.OnClickListener listener) {
+    public void showError(int messageId) {
         swipeRefreshLayout.setRefreshing(false);
         //RxSwipeRefreshLayout.refreshing(swipeRefreshLayout).call(false);
         if (!progressLayout.isError()) {
-            progressLayout.showError(messageId, listener);
+            progressLayout.showError(messageId);
         }
     }
 

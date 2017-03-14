@@ -14,19 +14,17 @@
         android:id="@+id/progress_loading_view"
         android:layout_width="@dimen/material_48dp"
         android:layout_height="@dimen/material_48dp"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
     <TextView
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_below="@id/progress_loading_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/material_32dp"
+        android:layout_marginTop="@dimen/material_16dp"
         android:layout_centerHorizontal="true"
         android:text="@string/loading"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/material_16sp"
+        android:textSize="@dimen/material_18sp"
         />
 
 </RelativeLayout>

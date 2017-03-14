@@ -16,7 +16,7 @@
     <color name="default_image_bg">#ffcfcfcf</color>
 
     <color name="list_item_background_normal">#ffffff</color>
-    <color name="list_item_background_pressed">#efefef</color>
+    <color name="list_item_background_pressed">#dfdfdf</color>
 
     <color name="tab_text_color">#ffcfcfcf</color>
     <color name="black">#000000</color>

@@ -1,7 +1,6 @@
 package com.inventec.newsblog.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.inventec.newsblog.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Test on 2017/2/21.
  */
 
-public class ProgressLayout extends RelativeLayout {
+public class ProgressLayout extends RelativeLayout{
     private static final String LOADING_TAG = "ProgressLayout.LOADING_TAG";
     private static final String ERROR_TAG = "ProgressLayout.ERROR_TAG";
 
@@ -40,6 +40,7 @@ public class ProgressLayout extends RelativeLayout {
     private Button errorButton;
     //内容view容器
     private List<View> contentViews = new ArrayList<View>();
+    private OnClickListener listener;
 
     private enum State {
         LOADING, CONTENT, ERROR
@@ -49,24 +50,32 @@ public class ProgressLayout extends RelativeLayout {
 
     public ProgressLayout(Context context) {
         super(context);
+        init();
     }
 
     public ProgressLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(attrs);
+        init();
     }
 
     public ProgressLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
+        init();
     }
 
     /**
      * 初始化，在构造方法中调用，获取inflater
-     * @param attrs
      */
-    private void init(AttributeSet attrs) {
+    private void init() {
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    /**
+     * 加载出错时，设置重试按钮的点击监听器
+     * @param listener
+     */
+    public void setOnButtonClickListener(OnClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -116,7 +125,7 @@ public class ProgressLayout extends RelativeLayout {
 
             errorTextView = (TextView) errorGroup.findViewById(R.id.progress_error_tv);
             errorButton = (Button) errorGroup.findViewById(R.id.progress_error_btn);
-
+            errorButton.setOnClickListener(listener);
             layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
             layoutParams.addRule(CENTER_IN_PARENT);
@@ -162,13 +171,12 @@ public class ProgressLayout extends RelativeLayout {
         ProgressLayout.this.setContentVisibility(true);
     }
 
-    public void showError(@StringRes int stringId, @NonNull OnClickListener onClickListener) {
+    public void showError(@StringRes int stringId) {
         currentState = State.ERROR;
         ProgressLayout.this.hideLoadingView();
         ProgressLayout.this.showErrorView();
 
         errorTextView.setText(getResources().getString(stringId));
-        errorButton.setOnClickListener(onClickListener);
         ProgressLayout.this.setContentVisibility(false);
     }
 

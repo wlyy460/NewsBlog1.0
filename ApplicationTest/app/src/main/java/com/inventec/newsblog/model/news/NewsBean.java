@@ -112,10 +112,20 @@ public class NewsBean {
 
     @Override
     public String toString() {
-        return "\n{ channelId:" + channelId + ",channelName:" + channelName
-                + ",desc:" + desc + ",\nimageurls:" + imageurls + ",link:" + link
-                + ",content:" + content + ",html:" + html + ",nid:" + nid
-                + ",pubDate:" + pubDate + ",source:" + source + ",title:" + title + " }";
+        StringBuilder sb = new StringBuilder();
+        sb.append("newsBean:").append("{channelId:").append(channelId)
+                .append( ",channelName:").append(channelName)
+                .append(",title:").append(title)
+                .append(",pubDate:" ).append(pubDate)
+                .append(",source:").append(source)
+                .append(",\ndesc:").append(desc)
+                .append(",\nimageurls:").append(imageurls)
+                .append(",\nlink:").append(link +"\n")
+                .append(",content:").append(content)
+                .append(",html:").append(html)
+                .append(",nid:").append(nid).append("}\n");
+
+        return sb.toString();
     }
 
     @Override

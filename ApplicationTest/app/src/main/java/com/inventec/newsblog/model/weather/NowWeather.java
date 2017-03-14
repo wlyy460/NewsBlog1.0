@@ -90,9 +90,17 @@ public class NowWeather {
 
     @Override
     public String toString() {
-        return "\n{ aqi:" + aqi + ",sd:" + sd + ",temperature:" + temperature
-                + ",temperature_time:" + temperature_time + ",weather:" + weather
-                + ",weather_code:" + weather_code + ",weather_pic:" + weather_pic
-                + ",wind_direction:" + wind_direction + ",wind_power" + wind_power + " }";
+        StringBuilder sb = new StringBuilder();
+        sb.append("{ aqi:").append(aqi)
+                .append( ",sd:").append(sd)
+                .append(",temperature:").append(temperature)
+                .append(",temperature_time:" ).append(temperature_time)
+                .append(",weather:").append(weather)
+                .append(",weather_code:").append(weather_code)
+                .append(",\nweather_pic:").append(weather_pic)
+                .append(",\nwind_direction:").append(wind_direction)
+                .append(",wind_power:").append(wind_power).append(" }");
+
+        return sb.toString();
     }
 }

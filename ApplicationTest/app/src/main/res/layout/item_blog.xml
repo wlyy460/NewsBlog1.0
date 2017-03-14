@@ -4,7 +4,7 @@
     android:id="@+id/item_blog_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/recycler_item_bg">
+    android:background="@drawable/list_item_bg">
 
     <RelativeLayout
         android:id="@+id/item_blog_layout"

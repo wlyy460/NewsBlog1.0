@@ -125,7 +125,6 @@ public class EmptyLayout extends LinearLayout implements
     }
 
     public void setErrorType(int i) {
-        setVisibility(View.VISIBLE);
         switch (i) {
             case NETWORK_ERROR:
                 mErrorState = NETWORK_ERROR;

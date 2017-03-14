@@ -12,6 +12,6 @@ public interface ILoadingView {
 
     void showLoading();
     void showContent();
-    void showError(int messageId, View.OnClickListener listener);
+    void showError(int messageId);
     Context getContext();
 }

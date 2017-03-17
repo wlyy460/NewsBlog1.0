@@ -93,7 +93,12 @@ public class CommonUtil {
     public static String paste(Context context) {
     // 得到剪贴板管理器
         ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        return cmb.getText().toString().trim();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cmb.getPrimaryClip().getItemCount(); i++) {
+            String text = cmb.getPrimaryClip().getItemAt(i).getText().toString().trim();
+            sb.append(text);
+        }
+        return sb.toString();
     }
 
     public static int toInt(String num, int defualt) {

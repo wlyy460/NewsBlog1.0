@@ -1,5 +1,6 @@
 package com.inventec.newsblog.model.pictures;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Test on 2017/3/2.
  */
 
-public class PictureBean {
+public class PictureBean implements Serializable{
     private String ct;// 2016-03-10 04;12;6.606,创建时间
     private String itemId;// 相册id
     private String title;// 相册标题
@@ -74,5 +75,20 @@ public class PictureBean {
                 .append(",\nlist:").append(list).append("}\n");
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj instanceof  PictureBean){
+            PictureBean bean = (PictureBean) obj;
+            //通过比较相册标题或者创建时间进行判断两个对象是否相等
+            if(bean.title.equals(this.title) || (bean.ct.equals(this.ct))){
+                return true;
+            }
+        }else {
+            return false;
+        }
+        return false;
     }
 }

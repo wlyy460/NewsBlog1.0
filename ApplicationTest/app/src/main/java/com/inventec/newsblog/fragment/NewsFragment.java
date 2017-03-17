@@ -15,7 +15,7 @@ import com.inventec.newsblog.inter.NetLoadImpl;
 import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.news.NewsBean;
-import com.inventec.newsblog.utils.Loger;
+import com.inventec.newsblog.utils.LogUtil;
 import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
         super.bindEvenListener();
         recyclerView = viewDelegate.get(R.id.base_recyclerview);
         iNewsData = new NetLoadImpl();
-        newsAdapter = new NewsListAdapter(recyclerView, newsData, R.layout.item_news);
+        newsAdapter = new NewsListAdapter(recyclerView, newsData);
         viewDelegate.setListAdapter(newsAdapter);
         bindEven();
         //注册下拉刷新
@@ -106,7 +106,8 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
         }else {
             pageNum++;
         }
-        iNewsData.doRequestNews(pageNum, INewsData.CHANNEL_ID, INewsData.CHANNEL_NAME, new OnNetRequestListener<List<NewsBean>>() {
+        iNewsData.doRequestNews(pageNum, INewsData.CHANNEL_ID, INewsData.CHANNEL_NAME,
+                new OnNetRequestListener<List<NewsBean>>() {
             @Override
             public void onStart() {
                 //首次加载数据时显示正在加载提示
@@ -129,7 +130,7 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                             //去重
                             for (NewsBean data : list) {
                                 if (!newsData.contains(data))
-                                    newsData.add(data);
+                                    newsData.add(0, data);
                             }
                         }else {
                             newsData.addAll(list);
@@ -146,7 +147,7 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
 
             @Override
             public void onFailure(Throwable t) {
-                Loger.debug(TAG ,"====网络请求异常," +  t.getMessage());
+                LogUtil.d(TAG ,"====网络请求异常," +  t.getMessage());
                 if (viewDelegate != null && newsAdapter != null) {
                     //有可能界面已经关闭网络请求仍然返回
                     if (newsAdapter.getItemCount() > 1) {

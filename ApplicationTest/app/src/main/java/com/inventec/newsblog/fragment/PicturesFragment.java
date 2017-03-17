@@ -16,7 +16,7 @@ import com.inventec.newsblog.inter.NetLoadImpl;
 import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.pictures.PictureBean;
-import com.inventec.newsblog.utils.Loger;
+import com.inventec.newsblog.utils.LogUtil;
 import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
@@ -55,9 +55,9 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         doLoadPicturesList(true);
-        /*if (pictureDatas == null || pictureDatas.isEmpty()){
-            floatingActionMenu.setVisibility(View.GONE);
-        }*/
+        if (pictureDatas == null || pictureDatas.isEmpty()){
+            floatingActionMenu.hideMenu(true);
+        }
     }
 
     @Override
@@ -72,6 +72,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                 R.id.floating_action_button2,
                 R.id.floating_action_button3,
                 R.id.floating_action_button4);
+        bindEven();
         //注册下拉刷新
         viewDelegate.registerSwipeRefreshCallBack(this);
         //注册加载更多
@@ -101,7 +102,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     }
 
     /**
-     * 从网络加载数据列表
+     * 从网络加载图片数据列表
      * @param isRefresh 是否刷新
      */
     private void doLoadPicturesList(final boolean isRefresh) {
@@ -126,6 +127,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                 if (list != null && !list.isEmpty()) {
                     if (isRefresh) {
                         if (isSwitchType) {
+                            isSwitchType = false;
                             pictureDatas.clear();
                             pictureDatas.addAll(list);
                             pictureGridAdapter.notifyDataSetChanged();
@@ -152,7 +154,7 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
 
             @Override
             public void onFailure(Throwable t) {
-                Loger.debug(TAG ,"====网络请求异常," +  t.getMessage());
+                LogUtil.d(TAG ,"====网络请求异常," +  t.getMessage());
                 if (viewDelegate != null && pictureGridAdapter != null) {
                     //有可能界面已经关闭网络请求仍然返回
                     if (pictureGridAdapter.getItemCount() > 1) {

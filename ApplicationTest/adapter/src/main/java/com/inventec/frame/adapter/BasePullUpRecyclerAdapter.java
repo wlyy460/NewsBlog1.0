@@ -172,8 +172,8 @@ public abstract class BasePullUpRecyclerAdapter<T> extends BaseRecyclerAdapter<T
                 case STAGGERED_GRID:
                     StaggeredGridLayoutManager staggeredGridLayoutManager
                             = (StaggeredGridLayoutManager) layoutManager;
-                    lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
-                    staggeredGridLayoutManager.findLastVisibleItemPositions(lastPositions);
+                    lastPositions = staggeredGridLayoutManager.findLastVisibleItemPositions
+                            (new int[staggeredGridLayoutManager.getSpanCount()]);
                     lastVisibleItem = findMax(lastPositions);
                     break;
             }

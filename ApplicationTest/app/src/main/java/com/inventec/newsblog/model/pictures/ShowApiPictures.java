@@ -9,7 +9,7 @@ import com.inventec.newsblog.model.entity.PageBean;
 
 public class ShowApiPictures {
     private PageBean<PictureBean> pagebean;//分页数
-    private String ret_code;//0为返回成功
+    private int ret_code;//0为返回成功
 
     public PageBean<PictureBean> getPageBean() {
         return pagebean;
@@ -19,16 +19,16 @@ public class ShowApiPictures {
         this.pagebean = pageBean;
     }
 
-    public String getResultCode() {
+    public int getResultCode() {
         return ret_code;
     }
 
-    public void setResultCode(String resultCode) {
+    public void setResultCode(int resultCode) {
         this.ret_code = resultCode;
     }
 
     @Override
     public String toString() {
-        return "{ pagebean:" + pagebean + ",ret_code:" + ret_code + " }";
+        return "{ ret_code:" + ret_code + ",pagebean:" + pagebean + " }";
     }
 }

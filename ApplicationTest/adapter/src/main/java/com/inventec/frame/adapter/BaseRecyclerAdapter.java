@@ -18,12 +18,23 @@ import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHolder> {
     protected List<T> realDatas;
-    protected final int mItemLayoutId;
+    protected int mItemLayoutId;
     protected Context cxt;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener{
         void onItemClick(View view, Object data, int position);
+    }
+
+    public BaseRecyclerAdapter(RecyclerView v, Collection<T> datas){
+        if (datas == null){
+            realDatas = new ArrayList<>();
+        }else if (datas instanceof List) {
+            realDatas = (List<T>) datas;
+        } else {
+            realDatas = new ArrayList<>(datas);
+        }
+        cxt = v.getContext();
     }
 
     public BaseRecyclerAdapter(RecyclerView v, Collection<T> datas, int itemLayoutId){

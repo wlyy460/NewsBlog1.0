@@ -8,7 +8,8 @@ package com.inventec.newsblog.model.weather;
 public class WeatherBean {
     private NowWeather now;
     private FutureWeather f1;
-    private String ret_code;// 0为应用级正常，-1失败
+    private CityInfoBean cityInfo;
+    private int ret_code;// 0为应用级正常，-1失败
     private String time; // 20151023180000
 
     public NowWeather getNowWeather() {
@@ -27,11 +28,11 @@ public class WeatherBean {
         this.f1 = futureWeather;
     }
 
-    public String getRetCode() {
+    public int getRetCode() {
         return ret_code;
     }
 
-    public void setRetCode(String retCode) {
+    public void setRetCode(int retCode) {
         this.ret_code = retCode;
     }
 
@@ -47,5 +48,13 @@ public class WeatherBean {
     public String toString() {
         return "{ now:" + now + ",f1:" + f1 + ",ret_code:" + ret_code
                 + ",time:" + time + " }";
+    }
+
+    public CityInfoBean getCityInfo() {
+        return cityInfo;
+    }
+
+    public void setCityInfo(CityInfoBean cityInfo) {
+        this.cityInfo = cityInfo;
     }
 }

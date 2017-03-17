@@ -14,9 +14,10 @@
 
     <color name="list_item_text_color">#9a9a9a</color>
     <color name="default_image_bg">#ffcfcfcf</color>
+    <color name="image_transparent_bg">#80dfdede</color>
 
-    <color name="list_item_background_normal">#ffffff</color>
-    <color name="list_item_background_pressed">#dfdfdf</color>
+    <color name="list_item_bg_normal">#ffffff</color>
+    <color name="list_item_bg_pressed">#dfdfdf</color>
 
     <color name="tab_text_color">#ffcfcfcf</color>
     <color name="black">#000000</color>
@@ -30,4 +31,5 @@
     <color name="red_color">#FC413D</color>
 
     <color name="list_item_divider">#3c000000</color>
+    <color name="fab_menu_bg">#8ce6e4e4</color>
 </resources>

@@ -41,7 +41,23 @@ public class MainTabFragment extends MainFragment<MainTabDelegate> {
         super.bindEvenListener();
         viewDelegate.setViewPagerAdapter(sectionsPagerAdapter);
         viewDelegate.setupWithViewPager();
-        ViewPager viewPager = viewDelegate.get(R.id.container_viewpager);
+        final ViewPager viewPager = viewDelegate.get(R.id.viewpager_container);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
+              /*  if (KeyboardUtil.isKeyboardOpened(context)){
+                    KeyboardUtil.closeKeyboard(context, viewPager);
+                }*/
+            }
+        });
     }
 
     @Override

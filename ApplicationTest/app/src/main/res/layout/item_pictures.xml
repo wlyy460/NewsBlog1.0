@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/material_1dp"
-    android:layout_marginRight="@dimen/material_1dp"
-    android:layout_marginTop="@dimen/material_2dp"
+    android:layout_marginLeft="@dimen/material_2dp"
+    android:layout_marginRight="@dimen/material_2dp"
+    android:layout_marginTop="@dimen/material_4dp"
     android:clickable="true">
 
     <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@mipmap/ic_holding"
             android:scaleType="fitCenter" />
+        <!-- android:src="@mipmap/ic_holding"-->
 
         <LinearLayout
             android:layout_width="match_parent"

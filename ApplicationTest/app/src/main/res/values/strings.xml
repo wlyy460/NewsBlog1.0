@@ -15,26 +15,29 @@
     <string name="menu_item_xitu">稀土掘金</string>
     <string name="menu_item_topic">推荐阅读</string>
 
-    <string name="load_again">点击屏幕  重新加载</string>
-    <string name="loading">加载中</string>
-    <string name="load_error">网络加载出错</string>
-
-    <!--<string name="title1">博客</string>
-    <string name="title2">阅读</string>
-    <string name="news_title1">开源中国</string>
-    <string name="news_title2">稀土掘金</string>-->
-
     <string name="blog_detail">博客详情</string>
-
-    <string name="double_click_exit">再次点击返回键退出</string>
     <string name="kymjs_blog_name">开源实验室</string>
     <string name="xitu_community_name">稀土掘金社区</string>
 
+    <string name="load_again">点击屏幕  重新加载</string>
+    <string name="loading">加载中&#8230;</string>
+    <string name="load_error">网络加载出错</string>
     <string name="btn_try_again">重试</string>
+
+    <string name="double_click_exit">再次点击返回键退出</string>
+
+    <!--天气预报-->
     <string name="weather_edit_hint">请输入城市名(如：北京)</string>
     <string name="weather_btn">查询当前天气</string>
+    <string name="weather_dialog_aqi">污染指数:%1$s</string>
+    <string name="weather_dialog_sd">湿度:%1$s</string>
+    <string name="weather_dialog_wind_direction">风向:%1$s</string>
+    <string name="weather_dialog_wind_power">风力强度:%1$s</string>
 
     <string name="tab_news">最新新闻</string>
+    <string name="news_title">新闻标题</string>
+    <string name="news_desc">新闻简介</string>
+
     <string name="tab_pictures">美图大全</string>
     <string name="tab_weather">天气预报</string>
     <string name="copyright_statement">Copyright@wlyy460 All Rights Reserved</string>
@@ -42,7 +45,11 @@
     <string name="app_url">https://github.com/wlyy460/NewsBlog</string>
 
     <string name="fab_scrolling_view_behavior" translatable="false">com.inventec.newsblog.behavior.FabScrollBehavior</string>
-    <string name="news_title">新闻标题</string>
-    <string name="news_desc">新闻简介</string>
+
+    <string name="error_prompt">请求错误,确认地名无误后重试</string>
+    <string name="error_input">地名输入错误</string>
+    <string name="input_empty_prompt">输入不能为空！</string>
+    <string name="unrealized_prompt">暂未实现</string>
+    <string name="news_source">国内最新</string>
 
 </resources>

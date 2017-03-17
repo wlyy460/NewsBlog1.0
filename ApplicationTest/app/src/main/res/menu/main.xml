@@ -11,5 +11,5 @@
         android:title="@string/action_settings"
         android:icon="@drawable/ic_menu_set"
         android:orderInCategory="100"
-        app:showAsAction="collapseActionView" />
+        app:showAsAction="collapseActionView"/>
 </menu>

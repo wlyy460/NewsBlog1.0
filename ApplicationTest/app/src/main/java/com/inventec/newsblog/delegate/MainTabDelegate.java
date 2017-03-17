@@ -24,7 +24,7 @@ public class MainTabDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        viewPager = get(R.id.container_viewpager);
+        viewPager = get(R.id.viewpager_container);
         tabLayout = get(R.id.tabs);
 
     }
@@ -40,6 +40,6 @@ public class MainTabDelegate extends AppDelegate {
     }
 
     public void setupWithViewPager(){
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager, false);
     }
 }

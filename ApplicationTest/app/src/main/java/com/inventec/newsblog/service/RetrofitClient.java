@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.inter.BizInterface;
+import com.inventec.newsblog.utils.FileUtil;
 import com.inventec.newsblog.utils.NetworkUtil;
 
 import java.io.File;
@@ -101,7 +102,7 @@ public class RetrofitClient {
         if (mOkHttpClient == null){
             // 因为BaseUrl不同所以这里Retrofit不为静态，但是OkHttpClient配置是一样的,静态创建一次即可
             // 指定缓存路径
-            File cacheFile = new File(BaseApplication.getContext().getCacheDir(), "HttpCache");
+            File cacheFile = FileUtil.getCacheDir("HttpCache");
             Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); // 指定缓存大小100Mb
             Interceptor rewriteCacheControlInterceptor = new Interceptor() {
                 @Override

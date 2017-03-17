@@ -1,5 +1,6 @@
 package com.inventec.newsblog.model.news;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Test on 2017/3/1.
  */
 
-public class NewsBean {
+public class NewsBean implements Serializable {
 
     private String channelId;// 频道id
     private String channelName;// 频道名称
@@ -130,11 +131,10 @@ public class NewsBean {
 
     @Override
     public boolean equals(Object obj) {
-        NewsBean data = null;
         if (obj instanceof  NewsBean){
-            data = (NewsBean) obj;
-            //通过新闻标题比较两个对象是否相等
-            if(data.title.equals(this.title)){
+            NewsBean data = (NewsBean) obj;
+            //通过比较新闻标题或者新闻链接判断两个对象是否相等
+            if(data.title.equals(this.title) || (data.link.equals(this.link))){
                 return true;
             }
         }else {

@@ -31,17 +31,18 @@
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_action_menu"
-        fab:menu_backgroundColor="#82ffffff"
-        fab:menu_icon="@mipmap/ic_star"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true"
-        fab:menu_openDirection="up"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/material_10dp"
+        android:layout_gravity="right|bottom"
+        fab:menu_backgroundColor="@color/fab_menu_bg"
         fab:menu_colorNormal="@color/colorAccent"
         fab:menu_colorPressed="@color/colorPressed"
         fab:menu_colorRipple="@color/colorRipple"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        fab:menu_icon="@mipmap/ic_star"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_openDirection="up">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/floating_action_button1"

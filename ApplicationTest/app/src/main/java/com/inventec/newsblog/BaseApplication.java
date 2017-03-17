@@ -4,13 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.inventec.frame.crash.CustomActivityOnCrash;
-import com.inventec.newsblog.utils.AppPkgInfoUtil;
 import com.inventec.newsblog.utils.FileUtil;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.http.RequestQueue;
 import com.kymjs.rxvolley.toolbox.Loger;
-
-import java.io.File;
 
 
 /**
@@ -20,7 +17,7 @@ import java.io.File;
 
 public class BaseApplication extends Application {
     private static BaseApplication instance;
-    public static String cacheDir = "";
+    //public static String cacheDir = "";
 
     @Override
     public void onCreate() {
@@ -31,24 +28,8 @@ public class BaseApplication extends Application {
 
         //app crash的提示
         CustomActivityOnCrash.install(this);
-        /**
-         * 如果存在SD卡则将缓存写入SD卡,否则写入手机内存
-         */
-        if (getApplicationContext().getExternalCacheDir() != null && isExistSDCard()) {
-            cacheDir = getApplicationContext().getExternalCacheDir().toString();
-        } else {
-            cacheDir = getApplicationContext().getCacheDir().toString();
-        }
         //设置volley网络请求的缓存目录
-        String packgeName = AppPkgInfoUtil.getPackgeName(this);
-        RxVolley.setRequestQueue(RequestQueue.newRequestQueue(FileUtil.getCacheDir(cacheDir
-                + File.separator + packgeName + File.separator
-                + "RxVolley" + File.separator)));
-    }
-
-    private boolean isExistSDCard() {
-        return android.os.Environment.getExternalStorageState()
-                .equals(android.os.Environment.MEDIA_MOUNTED);
+        RxVolley.setRequestQueue(RequestQueue.newRequestQueue(FileUtil.getCacheDir("RxVolley")));
     }
 
     public static BaseApplication getInstance(){

@@ -34,7 +34,9 @@
     <dimen name="material_6dp">6dip</dimen>
     <dimen name="material_8dp">8dip</dimen>
     <dimen name="material_10dp">10dip</dimen>
-    <dimen name="material_16dp">16dp</dimen>
+    <dimen name="material_12dp">12dip</dimen>
+    <dimen name="material_15dp">15dip</dimen>
+    <dimen name="material_16dp">16dip</dimen>
     <dimen name="material_24dp">24dip</dimen>
     <dimen name="material_32dp">32dip</dimen>
     <dimen name="material_40dp">40dip</dimen>
@@ -42,11 +44,13 @@
     <dimen name="material_56dp">56dip</dimen>
     <dimen name="material_64dp">64dip</dimen>
     <dimen name="material_72dp">72dip</dimen>
-    <dimen name="material_80dp">80dp</dimen>
+    <dimen name="material_80dp">80dip</dimen>
+    <dimen name="material_90dp">90dip</dimen>
     <dimen name="material_100dp">100dip</dimen>
     <dimen name="material_114dp">114dip</dimen>
     <dimen name="material_120dp">120dip</dimen>
     <dimen name="material_128dp">128dip</dimen>
+    <dimen name="material_130dp">130dip</dimen>
     <dimen name="material_144dp">144dip</dimen>
     <dimen name="material_150dp">150dip</dimen>
     <dimen name="material_160dp">160dip</dimen>

@@ -12,7 +12,9 @@ import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.inventec.frame.base.BaseFrameActivity;
 import com.inventec.frame.base.MainFragment;
@@ -24,6 +26,7 @@ import com.inventec.newsblog.fragment.MainTabFragment;
 import com.inventec.newsblog.fragment.XituListFragment;
 import com.inventec.newsblog.model.Event;
 import com.inventec.newsblog.utils.Api;
+import com.inventec.newsblog.utils.KeyboardUtil;
 import com.inventec.newsblog.utils.ToastUtil;
 
 import rx.Subscription;
@@ -210,8 +213,8 @@ public class MainActivity extends BaseFrameActivity<MainDelegate> implements Mai
         int id = item.getItemId();
         switch (id){
             case R.id.action_about:
-                ToastUtil toastUtil = new ToastUtil();
-                toastUtil.Short(this, "暂未实现").show();
+                ToastUtil.showToast(this, getString(R.string.unrealized_prompt),
+                        Toast.LENGTH_SHORT);
                 return true;
             case R.id.action_setting:
 
@@ -239,6 +242,17 @@ public class MainActivity extends BaseFrameActivity<MainDelegate> implements Mai
                 break;
         }
         viewDelegate.changeMenuState();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View view = getCurrentFocus();
+            if (KeyboardUtil.isShouldHideKeyboard(view, ev)) {
+                KeyboardUtil.closeKeyboard(this,view);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     /*@Override

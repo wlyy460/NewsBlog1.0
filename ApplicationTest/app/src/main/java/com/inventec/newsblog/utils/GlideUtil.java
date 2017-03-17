@@ -19,7 +19,6 @@ public class GlideUtil {
                 .placeholder(R.mipmap.ic_holding)
                 .error(R.mipmap.ic_error)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .centerCrop()
                 .into(imageView);
     }
 }

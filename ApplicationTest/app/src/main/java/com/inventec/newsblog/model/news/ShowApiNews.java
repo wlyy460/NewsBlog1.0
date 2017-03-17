@@ -9,13 +9,13 @@ import com.inventec.newsblog.model.entity.PageBean;
 
 public class ShowApiNews {
     private PageBean<NewsBean> pagebean;
-    private String ret_code;//0为返回成功
+    private int ret_code;//0为返回成功
 
-    public String getResultCode() {
+    public int getResultCode() {
         return ret_code;
     }
 
-    public void setResultCode(String resultCode) {
+    public void setResultCode(int resultCode) {
         this.ret_code = resultCode;
     }
 
@@ -29,6 +29,6 @@ public class ShowApiNews {
 
     @Override
     public String toString() {
-        return "{ pagebean:"+pagebean + ",ret_code:" + ret_code + " }";
+        return "{ ret_code:" + ret_code + ",pagebean:" + pagebean + " }";
     }
 }

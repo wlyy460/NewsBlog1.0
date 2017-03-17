@@ -1,8 +1,6 @@
 package com.inventec.newsblog.inter;
 
 
-import android.util.Log;
-
 import com.inventec.newsblog.model.entity.ShowApiResponse;
 import com.inventec.newsblog.model.news.NewsBean;
 import com.inventec.newsblog.model.news.ShowApiNews;
@@ -10,6 +8,7 @@ import com.inventec.newsblog.model.pictures.PictureBean;
 import com.inventec.newsblog.model.pictures.ShowApiPictures;
 import com.inventec.newsblog.model.weather.WeatherBean;
 import com.inventec.newsblog.service.RetrofitClient;
+import com.inventec.newsblog.utils.LogUtil;
 
 import java.util.List;
 
@@ -43,11 +42,13 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
             @Override
             public void onResponse(Call<ShowApiResponse<ShowApiNews>> call, Response<ShowApiResponse<ShowApiNews>> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.d("doRequestNews", "message: " + response.message() + " code:" + response.code()
+                    LogUtil.d("doRequestNews", "message: " + response.message() + " code:" + response.code()
                             + "\nshowapi_body: " + response.body().showapi_res_body.toString()
                             + "\nshowapi_code:" + response.body().showapi_res_code
                             + " showapi_error:" + response.body().showapi_res_error);
-                    if(response.body().showapi_res_body != null && response.body().showapi_res_code == 0){
+                    if(response.body().showapi_res_body != null
+                            && response.body().showapi_res_code == 0
+                            &&response.body().showapi_res_body.getResultCode() == 0){
                         listener.onSuccess(response.body().showapi_res_body.getPageBean().getContentList());
                         listener.onFinish();
                     }else{
@@ -91,11 +92,13 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
 
                     @Override
                     public void onNext(ShowApiResponse<ShowApiPictures> response) {
-                        Log.d("doRequestPictures", "showapi_body: "
-                                + response.showapi_res_body
+                        LogUtil.d("doRequestPictures", "showapi_body: "
+                                + response.showapi_res_body.toString()
                                 + "\nshowapi_code:" + response.showapi_res_code
                                 + " showapi_error:" + response.showapi_res_error);
-                        if (response.showapi_res_body != null && response.showapi_res_code == 0) {
+                        if (response.showapi_res_body != null
+                                && response.showapi_res_code == 0
+                                &&response.showapi_res_body.getResultCode() == 0) {
                             listener.onSuccess(response.showapi_res_body.getPageBean().getContentList());
                         } else {
                             listener.onFailure(new Exception(response.showapi_res_error));
@@ -126,20 +129,19 @@ public class NetLoadImpl implements INewsData, IPictureData, IWeatherData {
                         //仅成功后会回调
                         listener.onFinish();
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         listener.onFailure(e);
                         listener.onFinish();
                     }
-
                     @Override
                     public void onNext(ShowApiResponse<WeatherBean> response) {
-                        Log.d("doRequestWeather", "showapi_body: "
+                        LogUtil.d("doRequestWeather", "showapi_body: "
                                 + response.showapi_res_body.toString()
                                 + "\nshowapi_code:" + response.showapi_res_code
                                 + " showapi_error:" + response.showapi_res_error);
-                        if (response.showapi_res_body.getNowWeather() != null || response.showapi_res_code == 0) {
+                        if (response.showapi_res_body.getNowWeather() != null
+                                && response.showapi_res_code == 0) {
                             listener.onSuccess(response.showapi_res_body);
                         } else {
                             listener.onFailure(new Exception(response.showapi_res_error));

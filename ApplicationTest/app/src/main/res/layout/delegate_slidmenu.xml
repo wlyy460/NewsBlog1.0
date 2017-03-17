@@ -20,7 +20,7 @@
 
             <ImageView
                 style="@style/MenuItemImageViewStyle"
-                android:background="@mipmap/menu_arr_select"
+                android:background="@mipmap/icon_slid_menu_3"
                 android:contentDescription="@null" />
 
             <TextView

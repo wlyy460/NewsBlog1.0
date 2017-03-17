@@ -150,13 +150,13 @@ public class MainDelegate extends AppDelegate {
         @Override
         public void onDrawerOpened(View drawerView) {
             super.onDrawerOpened(drawerView);
-            mFab.hide();
+            //mFab.hide();
         }
 
         @Override
         public void onDrawerClosed(View drawerView) {
             super.onDrawerClosed(drawerView);
-            mFab.show();
+            //mFab.show();
         }
     }
 }

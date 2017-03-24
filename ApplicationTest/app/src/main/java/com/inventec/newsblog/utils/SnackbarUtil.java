@@ -15,8 +15,7 @@ import com.inventec.newsblog.R;
  * Created by Test on 2017/2/27.
  */
 
-public class SnackbarUtil {
-    public static final int Info = 1;
+public class SnackbarUtil {    public static final int Info = 1;
     public static final int Confirm = 2;
     public static final int Warning = 3;
     public static final int Alert = 4;
@@ -28,6 +27,20 @@ public class SnackbarUtil {
     public static int orange = 0xffffc107;
 
 
+    /**
+     * 显示半透明的Snackbar
+     * @param rootView
+     * @param message
+     * @param duration
+     */
+    public static void showSnackbar(View rootView, int message, int duration) {
+        Snackbar snackbar = Snackbar.make(rootView, message, duration);
+        View view = snackbar.getView();
+        if (view != null) {
+            view.setAlpha((float) 0.3);
+        }
+        snackbar.show();
+    }
 
     /**
      * 短显示Snackbar，自定义颜色

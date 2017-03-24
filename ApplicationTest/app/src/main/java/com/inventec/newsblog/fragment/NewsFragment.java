@@ -19,6 +19,7 @@ import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.news.NewsBean;
 import com.inventec.newsblog.utils.LogUtil;
 import com.inventec.newsblog.utils.NetworkUtil;
+import com.inventec.newsblog.utils.SnackbarUtil;
 import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
@@ -163,8 +164,9 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                         viewDelegate.showError(R.string.load_error);
                     }
                     if (!NetworkUtil.checkNetworkConnected(BaseApplication.getContext())){
-                        Snackbar.make(viewDelegate.getRootView(), R.string.check_network_connet_setting,
-                                Snackbar.LENGTH_SHORT).show();
+                        SnackbarUtil.showSnackbar(viewDelegate.getRootView(),
+                                R.string.check_network_connet_setting,
+                                Snackbar.LENGTH_LONG);
                     }
                 }
             }

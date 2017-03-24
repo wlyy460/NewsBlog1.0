@@ -13,6 +13,7 @@ import com.inventec.newsblog.inter.NetLoadImpl;
 import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.model.weather.WeatherBean;
 import com.inventec.newsblog.utils.LogUtil;
+import com.inventec.newsblog.utils.SnackbarUtil;
 import com.inventec.newsblog.utils.ToastUtil;
 
 /**
@@ -82,16 +83,16 @@ public class WeatherFragment extends FragmentPresenter<WeatherFragmentDelegate> 
                         if (data.getRetCode() == 0){
                             viewDelegate.showNowWeatherDialog(data);
                         }else{
-                            Snackbar.make(viewDelegate.getRootView(),getString(R.string.error_input),
-                                    Snackbar.LENGTH_SHORT).show();
+                            SnackbarUtil.showSnackbar(viewDelegate.getRootView(),
+                                    R.string.error_input, Snackbar.LENGTH_SHORT);
                         }
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
                         LogUtil.d(TAG, "====网络请求异常," + t.getMessage());
-                        Snackbar.make(viewDelegate.getRootView(),getString(R.string.error_prompt),
-                                Snackbar.LENGTH_SHORT).show();
+                        SnackbarUtil.showSnackbar(viewDelegate.getRootView(),
+                                R.string.error_prompt, Snackbar.LENGTH_SHORT);
                         /*SnackbarUtil.shortSnackbar(viewDelegate.getRootView(),
                                 getString(R.string.error_prompt), Color.WHITE, viewDelegate.getActivity()
                                         .getResources().getColor(R.color.main_gray) )

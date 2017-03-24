@@ -23,6 +23,7 @@ public abstract class BaseFrameActivity<T extends IDelegate> extends ActivityPre
         rootView.setOrientation(LinearLayout.VERTICAL);
         super.onCreate(savedInstanceState);
         super.setContentView(rootView);
+
     }
 
     @Override

@@ -1,1 +1,1 @@
-include ':app', ':gallery', ':adapter', ':crash', ':base', ':themvp'
+include ':app', ':gallery', ':adapter', ':crash', ':themvp'

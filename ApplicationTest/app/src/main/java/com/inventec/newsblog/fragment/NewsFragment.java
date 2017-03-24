@@ -2,11 +2,13 @@ package com.inventec.newsblog.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.inventec.frame.adapter.BaseRecyclerAdapter;
 import com.inventec.frame.themvp.presenter.FragmentPresenter;
+import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.R;
 import com.inventec.newsblog.adapter.NewsListAdapter;
 import com.inventec.newsblog.delegate.NewsFragmentDelegate;
@@ -16,9 +18,11 @@ import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.news.NewsBean;
 import com.inventec.newsblog.utils.LogUtil;
+import com.inventec.newsblog.utils.NetworkUtil;
 import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -76,7 +80,6 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
             @Override
             public void onClick(View v) {
                 doLoadNewsList(true);
-                viewDelegate.showLoading();
             }
         });
     }
@@ -129,9 +132,13 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                         if (newsData != null && !newsData.isEmpty()) {
                             //去重
                             for (NewsBean data : list) {
-                                if (!newsData.contains(data))
-                                    newsData.add(0, data);
+                                if (!newsData.contains(data)) {
+                                    newsData.add(data);
+                                }
                             }
+                            //刷新获取的新闻列表按发布日期降序排序
+                            Collections.sort(newsData);
+                            Collections.reverse(newsData);
                         }else {
                             newsData.addAll(list);
                         }
@@ -154,6 +161,10 @@ public class NewsFragment extends FragmentPresenter<NewsFragmentDelegate> implem
                         viewDelegate.showContent();
                     } else {
                         viewDelegate.showError(R.string.load_error);
+                    }
+                    if (!NetworkUtil.checkNetworkConnected(BaseApplication.getContext())){
+                        Snackbar.make(viewDelegate.getRootView(), R.string.check_network_connet_setting,
+                                Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }

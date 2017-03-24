@@ -9,8 +9,11 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.inventec.newsblog.BaseApplication;
@@ -160,12 +163,33 @@ public class UIUtil {
      * @return
      */
     public static int getStatusBarHeight() {
-        int id = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
-        if (id == 0) {
-            return 0;
+        //获取status_bar_height资源的ID
+        int resourceId  = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return Resources.getSystem().getDimensionPixelSize(resourceId);
         } else {
-            return Resources.getSystem().getDimensionPixelSize(id);
+            return 0;
         }
+    }
+
+    /**
+     *
+     * 获取标题栏高度
+     * @param activity
+     * @return
+     */
+    public static int getTitleBarHeight(Activity activity) {
+        DisplayMetrics dm = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        //应用区域
+        Rect outRect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
+        int viewTop = activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        /**标题栏高度 = View绘制区顶端位置 - 应用区顶端位置
+                * */
+        int titleHeight = viewTop - outRect.top;
+        Log.e("WangJ", "标题栏高度：" + titleHeight);
+        return titleHeight;
     }
 
 }

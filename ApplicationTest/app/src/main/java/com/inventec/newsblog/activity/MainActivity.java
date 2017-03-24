@@ -16,9 +16,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.inventec.frame.base.BaseFrameActivity;
-import com.inventec.frame.base.MainFragment;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.BaseFrameActivity;
+import com.inventec.newsblog.base.MainFragment;
 import com.inventec.newsblog.delegate.MainDelegate;
 import com.inventec.newsblog.fragment.BlogListFragment;
 import com.inventec.newsblog.fragment.MainSlidMenu;

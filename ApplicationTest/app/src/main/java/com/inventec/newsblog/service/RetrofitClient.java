@@ -108,12 +108,12 @@ public class RetrofitClient {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     Request request = chain.request();
-                    if (!NetworkUtil.networkConnected(BaseApplication.getContext())) {
+                    if (!NetworkUtil.checkNetworkConnected(BaseApplication.getContext())) {
                         request = request.newBuilder()
                                 .cacheControl(CacheControl.FORCE_CACHE).build();
                     }
                     Response originalResponse = chain.proceed(request);
-                    if (NetworkUtil.networkConnected(BaseApplication.getContext())) {
+                    if (NetworkUtil.checkNetworkConnected(BaseApplication.getContext())) {
                         //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                         String cacheControl = request.cacheControl().toString();
                         return originalResponse.newBuilder()
@@ -141,6 +141,6 @@ public class RetrofitClient {
      */
     @NonNull
     public static String getCacheControl() {
-        return NetworkUtil.networkConnected(BaseApplication.getContext()) ? CACHE_CONTROL_NETWORK : CACHE_CONTROL_CACHE;
+        return NetworkUtil.checkNetworkConnected(BaseApplication.getContext()) ? CACHE_CONTROL_NETWORK : CACHE_CONTROL_CACHE;
     }
 }

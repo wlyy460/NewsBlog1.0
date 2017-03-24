@@ -14,9 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
-import com.inventec.frame.base.activity.BaseBackActivity;
 import com.inventec.newsblog.AppConfig;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.activity.BaseBackActivity;
 import com.inventec.newsblog.delegate.BlogDetailDelegate;
 import com.inventec.newsblog.delegate.BrowserDelegateOption;
 import com.inventec.newsblog.inter.IRequestVo;
@@ -38,8 +38,7 @@ import rx.schedulers.Schedulers;
  * Created by Test on 2017/2/15.
  */
 
-public class BlogDetailActivity extends BaseBackActivity<BlogDetailDelegate> implements IRequestVo/*,
-        AppBarLayout.OnOffsetChangedListener*/ {
+public class BlogDetailActivity extends BaseBackActivity<BlogDetailDelegate> implements IRequestVo {
     public static final String KEY_BLOG_URL = "blog_url_key";
     public static final String KEY_BLOG_TITLE = "blog_title_key";
     protected String url;

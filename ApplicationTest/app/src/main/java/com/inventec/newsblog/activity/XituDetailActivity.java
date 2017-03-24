@@ -12,9 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
-import com.inventec.frame.base.activity.BaseBackActivity;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.activity.BaseBackActivity;
 import com.inventec.newsblog.delegate.BlogDetailDelegate;
+import com.inventec.newsblog.delegate.BrowserDelegateOption;
 import com.inventec.newsblog.inter.IRequestVo;
 import com.inventec.newsblog.model.XituBlog;
 import com.inventec.newsblog.utils.CommonUtil;
@@ -138,6 +139,11 @@ public class XituDetailActivity extends BaseBackActivity<BlogDetailDelegate> imp
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (viewDelegate != null && webView != null){
@@ -167,8 +173,11 @@ public class XituDetailActivity extends BaseBackActivity<BlogDetailDelegate> imp
                     @Override
                     public void call(String s) {
                         if (s != null && viewDelegate != null) {
-                            viewDelegate.setContentUrl(s);
-                            setTitle(LinkDispatcher.getActionTitle(s, data.getTitle()));
+                            if (!TextUtils.isEmpty(contentUrl)) {
+                                viewDelegate.setContent(contentUrl);
+                            }else{
+                                viewDelegate.setContentUrl(data.getLink());
+                            }
                         } else {
                             emptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                         }

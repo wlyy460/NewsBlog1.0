@@ -41,6 +41,7 @@
     <dimen name="material_32dp">32dip</dimen>
     <dimen name="material_40dp">40dip</dimen>
     <dimen name="material_48dp">48dip</dimen>
+    <dimen name="material_50dp">50dip</dimen>
     <dimen name="material_56dp">56dip</dimen>
     <dimen name="material_64dp">64dip</dimen>
     <dimen name="material_72dp">72dip</dimen>

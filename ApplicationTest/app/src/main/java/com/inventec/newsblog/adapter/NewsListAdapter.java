@@ -146,7 +146,7 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean> {
                         R.layout.item_footer, parent, false);
                 footerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));
-                return new RecyclerHolder(footerView);
+                return new FooterHolder(footerView);
 
             default:
                 return new ItemDefaultHolder(defaultItemView);
@@ -188,6 +188,15 @@ public class NewsListAdapter extends BaseRecyclerAdapter<NewsBean> {
      */
     private static class ItemMutipleHolder extends RecyclerHolder {
         public ItemMutipleHolder(View view) {
+            super(view);
+        }
+    }
+
+    /**
+     * 显示底部加载更多布局的ViewHolder类
+     */
+    private static class FooterHolder extends RecyclerHolder {
+        public FooterHolder(View view) {
             super(view);
         }
     }

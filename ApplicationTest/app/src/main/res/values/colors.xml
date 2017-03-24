@@ -31,5 +31,13 @@
     <color name="red_color">#FC413D</color>
 
     <color name="list_item_divider">#3c000000</color>
-    <color name="fab_menu_bg">#8ce6e4e4</color>
+    <color name="transparent_light_gray_color">#82d2d1d1</color>
+
+    <color name="base_black_alpha_48">#30000000</color>
+
+    <!-- 下拉刷新时，颜色值 -->
+    <color name="base_swiperefresh_color1">#ff00ddff</color>
+    <color name="base_swiperefresh_color2">#ffffbb33</color>
+    <color name="base_swiperefresh_color3">#ffff4444</color>
+    <color name="base_swiperefresh_color4">#ffaa66cc</color>
 </resources>

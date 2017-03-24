@@ -15,7 +15,7 @@ public interface INewsData {
     public static final String CHANNEL_NAME = "国内最新";//频道名称 来自api指定
 
     /**
-     * *
+     *
      * 请求加载新闻列表
      * @param page 页数
      * @param channelId 频道id 来自api

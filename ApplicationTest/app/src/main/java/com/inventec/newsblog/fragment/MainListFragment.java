@@ -1,5 +1,6 @@
 package com.inventec.newsblog.fragment;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,10 +8,12 @@ import android.view.View;
 
 import com.inventec.frame.adapter.BasePullUpRecyclerAdapter;
 import com.inventec.frame.adapter.BaseRecyclerAdapter;
-import com.inventec.frame.base.MainFragment;
+import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.MainFragment;
 import com.inventec.newsblog.delegate.PullListDelegate;
 import com.inventec.newsblog.inter.IRequestVo;
+import com.inventec.newsblog.utils.NetworkUtil;
 import com.inventec.newsblog.widget.EmptyLayout;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.toolbox.Loger;
@@ -80,6 +83,10 @@ public abstract class MainListFragment<T> extends MainFragment<PullListDelegate>
                     viewDelegate.mEmptyLayout.dismiss();
                 }else{
                     viewDelegate.mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                }
+                if (!NetworkUtil.checkNetworkConnected(BaseApplication.getContext())){
+                    Snackbar.make(viewDelegate.getRootView(), R.string.check_network_connet_setting,
+                            Snackbar.LENGTH_LONG).show();
                 }
             }
         }

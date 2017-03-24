@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/material_10dp"
         android:layout_gravity="right|bottom"
-        fab:menu_backgroundColor="@color/fab_menu_bg"
+        fab:menu_backgroundColor="@color/transparent_light_gray_color"
         fab:menu_colorNormal="@color/colorAccent"
         fab:menu_colorPressed="@color/colorPressed"
         fab:menu_colorRipple="@color/colorRipple"
@@ -63,7 +63,7 @@
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/floating_action_button3"
             style="@style/MenuButtonsStyle"
-            fab:fab_label="非主流"
+            fab:fab_label="明星"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_coffee" />

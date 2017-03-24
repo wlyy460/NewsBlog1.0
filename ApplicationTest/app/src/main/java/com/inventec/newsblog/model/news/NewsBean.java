@@ -1,5 +1,9 @@
 package com.inventec.newsblog.model.news;
 
+import android.support.annotation.NonNull;
+
+import com.inventec.newsblog.utils.TimeUtil;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +12,7 @@ import java.util.List;
  * Created by Test on 2017/3/1.
  */
 
-public class NewsBean implements Serializable {
+public class NewsBean implements Comparable<NewsBean> {
 
     private String channelId;// 频道id
     private String channelName;// 频道名称
@@ -133,13 +137,25 @@ public class NewsBean implements Serializable {
     public boolean equals(Object obj) {
         if (obj instanceof  NewsBean){
             NewsBean data = (NewsBean) obj;
-            //通过比较新闻标题或者新闻链接判断两个对象是否相等
-            if(data.title.equals(this.title) || (data.link.equals(this.link))){
-                return true;
+            //通过比较新闻链接判断两个对象是否相等
+            if (data.link != null) {
+                return data.link.equals(this.link);
+            }else{
+                return this.link == null;
             }
         }else {
-            return false;
+            return super.equals(obj);
         }
-        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.link.hashCode();
+    }
+
+    @Override
+    public int compareTo(@NonNull NewsBean obj) {
+        //long pubDate = TimeUtil.getTimeInMillis(obj.getPubDate().trim());
+        return this.pubDate.compareTo(obj.getPubDate().trim());
     }
 }

@@ -13,6 +13,17 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="base_SwipeBackLayout">
+        <item name="base_edge_size">@dimen/material_50dp</item>
+        <item name="base_shadow_left">@drawable/base_shadow_left</item>
+        <item name="base_shadow_right">@drawable/base_shadow_right</item>
+        <item name="base_shadow_bottom">@drawable/base_shadow_bottom</item>
+    </style>
+
+    <style name="base_KJAppTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

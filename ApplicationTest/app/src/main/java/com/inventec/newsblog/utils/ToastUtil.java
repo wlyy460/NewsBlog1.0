@@ -1,6 +1,7 @@
 package com.inventec.newsblog.utils;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -208,7 +209,7 @@ public class ToastUtil {
     }
 
     /**
-     * 显示Toast
+     * 显示中心位置的Toast
      * @param context
      * @param text
      */
@@ -216,6 +217,7 @@ public class ToastUtil {
         if(toast == null) {
             toast = Toast.makeText(context, text, duration);
         }else{
+            toast.setGravity(Gravity.TOP, 0,0);
             toast.setText(text);
             toast.setDuration(duration);
         }
@@ -225,9 +227,10 @@ public class ToastUtil {
     /**
      * 设置toast显示位置
      */
-    public void setGravity(int gravity, int xOffset, int yOffset) {
+    public ToastUtil setGravity(int gravity, int xOffset, int yOffset) {
         //toast.setGravity(Gravity.CENTER, 0, 0); //居中显示
         toast.setGravity(gravity, xOffset, yOffset);
+        return this;
     }
 
     /**

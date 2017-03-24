@@ -155,10 +155,9 @@ public abstract class BaseRecyclerViewDelegate extends AppDelegate implements IL
     @Override
     public void showError(int messageId) {
         swipeRefreshLayout.setRefreshing(false);
-        //RxSwipeRefreshLayout.refreshing(swipeRefreshLayout).call(false);
-        if (!progressLayout.isError()) {
-            progressLayout.showError(messageId);
-        }
+        //if (!progressLayout.isError()) {
+        progressLayout.showError(messageId);
+        //}
     }
 
 }

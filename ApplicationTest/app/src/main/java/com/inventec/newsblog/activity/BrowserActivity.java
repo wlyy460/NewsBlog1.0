@@ -9,8 +9,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
-import com.inventec.frame.base.activity.BaseBackActivity;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.activity.BaseBackActivity;
 import com.inventec.newsblog.delegate.BrowserDelegate;
 import com.inventec.newsblog.utils.CommonUtil;
 
@@ -32,16 +32,17 @@ public class BrowserActivity extends BaseBackActivity<BrowserDelegate> {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String url = intent.getStringExtra(KEY_URL);
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             viewDelegate.webView.restoreState(savedInstanceState);
             Log.d("BrowserActivity", "restore state");
-        }else{
+        } else {
             viewDelegate.setContentUrl(url);
         }
     }
 
     /**
      * 保持webView的状态
+     *
      * @param outState
      */
     @Override
@@ -106,7 +107,7 @@ public class BrowserActivity extends BaseBackActivity<BrowserDelegate> {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && viewDelegate.webView.canGoBack()){
+        if (keyCode == KeyEvent.KEYCODE_BACK && viewDelegate.webView.canGoBack()) {
             //按返回键实现webView返回到上一浏览界面
             viewDelegate.webView.goBack();
             return true;

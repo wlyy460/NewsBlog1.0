@@ -1,5 +1,7 @@
 package com.inventec.newsblog.model.pictures;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * Created by Test on 2017/3/2.
  */
 
-public class PictureBean implements Serializable{
+public class PictureBean implements Comparable<PictureBean>{
     private String ct;// 2016-03-10 04;12;6.606,创建时间
     private String itemId;// 相册id
     private String title;// 相册标题
@@ -79,16 +81,26 @@ public class PictureBean implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-
         if (obj instanceof  PictureBean){
-            PictureBean bean = (PictureBean) obj;
+            PictureBean data = (PictureBean) obj;
             //通过比较相册标题或者创建时间进行判断两个对象是否相等
-            if(bean.title.equals(this.title) || (bean.ct.equals(this.ct))){
-                return true;
+            if (data.title != null && (data.ct != null)){
+                return (data.title.equals(title) || ((data.ct.equals(this.ct))));
+            }else{
+               return this.title == null || (this.ct == null);
             }
-        }else {
-            return false;
+        }else{
+            return super.equals(obj);
         }
-        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.title.hashCode();
+    }
+
+    @Override
+    public int compareTo(@NonNull PictureBean obj) {
+        return this.ct.compareTo(obj.getTime().trim());
     }
 }

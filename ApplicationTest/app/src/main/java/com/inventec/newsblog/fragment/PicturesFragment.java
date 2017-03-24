@@ -2,12 +2,14 @@ package com.inventec.newsblog.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionMenu;
 import com.inventec.frame.adapter.BaseRecyclerAdapter;
 import com.inventec.frame.themvp.presenter.FragmentPresenter;
+import com.inventec.newsblog.BaseApplication;
 import com.inventec.newsblog.R;
 import com.inventec.newsblog.adapter.PictureGridAdapter;
 import com.inventec.newsblog.delegate.PicturesFragmentDelegate;
@@ -17,9 +19,11 @@ import com.inventec.newsblog.inter.OnNetRequestListener;
 import com.inventec.newsblog.inter.SwipeRefreshAndLoadMoreCallBack;
 import com.inventec.newsblog.model.pictures.PictureBean;
 import com.inventec.newsblog.utils.LogUtil;
+import com.inventec.newsblog.utils.NetworkUtil;
 import com.inventec.newsblog.widget.ProgressLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -85,8 +89,9 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
         progressLayout.setOnButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //加载错误时重试按钮的点击动作
                 doLoadPicturesList(true);
-                viewDelegate.showLoading();
+                //viewDelegate.showLoading();
             }
         });
     }
@@ -139,6 +144,9 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                                 if (!pictureDatas.contains(data))
                                     pictureDatas.add(data);
                             }
+                            //刷新获取的图片列表按创建日期降序排序
+                            Collections.sort(pictureDatas);
+                            Collections.reverse(pictureDatas);
                         }else{
                             pictureDatas.addAll(list);
                         }
@@ -162,6 +170,10 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
                     } else {
                         viewDelegate.showError(R.string.load_error);
                     }
+                    if (!NetworkUtil.checkNetworkConnected(BaseApplication.getContext())){
+                        Snackbar.make(viewDelegate.getRootView(), R.string.check_network_connet_setting,
+                                Snackbar.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -173,20 +185,20 @@ public class PicturesFragment extends FragmentPresenter<PicturesFragmentDelegate
     }
 
     /**
-     * 悬浮菜单项目的点击动作的实现
+     * 悬浮菜单条目点击实现切换选择图片类型
      * @param v
      */
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.floating_action_button1:
-                pictureType = "4001";//清纯
+                pictureType = "4004";///校花
                 break;
             case R.id.floating_action_button2:
-                pictureType = "4004";//校花
+                pictureType = "4001";//清纯
                 break;
             case R.id.floating_action_button3:
-                pictureType = "4007";//非主流
+                pictureType = "2001";//明星
                 break;
             case R.id.floating_action_button4:
                 pictureType = "4013";//美女魅惑

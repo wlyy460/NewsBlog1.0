@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
-import com.inventec.frame.base.activity.BaseBackActivity;
 import com.inventec.newsblog.R;
+import com.inventec.newsblog.base.activity.BaseBackActivity;
 import com.inventec.newsblog.delegate.BlogDetailDelegate;
 import com.inventec.newsblog.utils.CommonUtil;
 import com.inventec.newsblog.utils.LinkDispatcher;
@@ -22,7 +22,7 @@ import com.inventec.newsblog.utils.LinkDispatcher;
  * Created by Test on 2017/2/16.
  */
 
-public class MobileBrowserActivity extends BaseBackActivity<BlogDetailDelegate>  {
+public class MobileBrowserActivity extends BaseBackActivity<BlogDetailDelegate> {
     public static final String KEY_BLOG_URL = "blog_url_key";
     public static final String KEY_BLOG_TITLE = "blog_title_key";
 

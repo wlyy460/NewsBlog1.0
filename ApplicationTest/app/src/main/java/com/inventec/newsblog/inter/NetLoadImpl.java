@@ -7,7 +7,7 @@ import com.inventec.newsblog.model.news.ShowApiNews;
 import com.inventec.newsblog.model.pictures.PictureBean;
 import com.inventec.newsblog.model.pictures.ShowApiPictures;
 import com.inventec.newsblog.model.weather.WeatherBean;
-import com.inventec.newsblog.service.RetrofitClient;
+import com.inventec.newsblog.network.RetrofitClient;
 import com.inventec.newsblog.utils.LogUtil;
 
 import java.util.List;

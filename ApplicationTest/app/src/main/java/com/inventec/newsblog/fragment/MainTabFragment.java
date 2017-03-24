@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.inventec.frame.base.MainFragment;
 import com.inventec.newsblog.R;
 import com.inventec.newsblog.adapter.SectionsPagerAdapter;
+import com.inventec.newsblog.base.MainFragment;
 import com.inventec.newsblog.delegate.MainTabDelegate;
 
 import rx.Subscription;

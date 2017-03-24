@@ -76,6 +76,9 @@ public class BrowserDelegateOption {
         //settings.setDomStorageEnabled(true);//开启DOM storage API功能
        // settings.setAppCacheEnabled(true);
         settings.setUseWideViewPort(true);// 设置图片可任意比例缩放
+        // 设置可以被显示的屏幕控制
+        settings.setDisplayZoomControls(true);
+
 
         int sysVersion = Build.VERSION.SDK_INT;
         if (sysVersion >= 19) {
